@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { login } from './../service/loginService';
+import { login } from '../service/loginService';
 import './../Style/login.css';
-const Login = (props) => {
+const Register = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const [fullName, setFullName] = useState('')
+
 
     const navigate = useNavigate()
 
@@ -50,7 +52,17 @@ const Login = (props) => {
         <flex className={'parent-container'}>
             <flex className={'mainContainer'}>
                 <div className={'titleContainer'}>
-                    <div>Login</div>
+                    <div>Sign-Up</div>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input
+                        value={fullName}
+                        placeholder="Enter your fullname here"
+                        onChange={(ev) => setFullName(ev.target.value)}
+                        className={'inputBox'}
+                    />
+                    <label className="errorLabel">{emailError}</label>
                 </div>
                 <br />
                 <div className={'inputContainer'}>
@@ -74,7 +86,7 @@ const Login = (props) => {
                 </div>
                 <br />
                 <div className={'inputContainer'}>
-                    <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
+                    <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'} />
                 </div>
 
             </flex>
@@ -84,4 +96,4 @@ const Login = (props) => {
     )
 }
 
-export default Login
+export default Register

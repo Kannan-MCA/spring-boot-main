@@ -1,18 +1,24 @@
 .mainContainer {
   position: absolute;
   top: 150px;
-  background-color: rgba(100, 148, 237, 0.073);
+  background-color: rgba(100, 148, 237, 0.174);
   border-top-left-radius: 130px;
-  border-top-right-radius: 50px;
+  border-top-right-radius: 180px;
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 150px;
-  min-height: 380px;
-  min-width: 380px;
+  min-height: 420px;
+  min-width: 480px;
+  left: -10px;
 }
 .parent-container{
   display: flex;
   flex-direction: row;
-  background-color:#DFE4E7;
+  background-color:#dfe4e7;
+  min-width:100%;
+  min-height: 550px;
+  position: absolute;
+  left: 0;
+  z-index: -10;
 }
 .imag-container{
   background-image:url('./../image/img.jpg');
@@ -28,6 +34,7 @@
   font-weight: bolder;
   align-items: center;
   justify-content: center;
+  margin-left: 80px;
 }
 
 .inputBox {
@@ -37,6 +44,8 @@
   border-radius: 8px;
   border: 1px solid grey;
   padding-left: 8px;
+  margin-left: 80px;
+  
 }
 
 .inputButton {
@@ -46,6 +55,7 @@
   border-radius: 8px;
   border: 1px solid grey;
   padding-left: 8px;
+  margin-left: 80px;
 }
 
 .inputButton:hover {
