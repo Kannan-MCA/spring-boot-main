@@ -15,41 +15,40 @@ import jakarta.persistence.Table;
 
 @Table(name = "users")
 @Entity
-public class User extends BaseEntity implements UserDetails{
+public class User extends BaseEntity implements UserDetails {
 	@Column(nullable = false)
-    private String fullName;
+	private String fullName;
 
-    @Column(unique = true, length = 100, nullable = false)
-    private String email;
+	@Column(unique = true, length = 100, nullable = false)
+	private String email;
 
-    @Column(nullable = false)
-    private String password;
+	@Column(nullable = false)
+	private String password;
 
-    @CreationTimestamp
-    @Column(updatable = false, name = "created_at")
-    private Date createdAt;
+	@CreationTimestamp
+	@Column(updatable = false, name = "created_at")
+	private Date createdAt;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Date updatedAt;
+	@UpdateTimestamp
+	@Column(name = "updated_at")
+	private Date updatedAt;
 
-    
-    public void setFullName(String fullName) {
-    	this.fullName = fullName;
-    }
-    
-    public String getFullName() {
-    	return fullName;
-    }
-    public void setEmail(String email) {
-    	this.email =email;
-    }
-    
-    public void setPassword(String password) {
-    	this.password = password;
-    }
-    
-    
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of();
@@ -84,5 +83,5 @@ public class User extends BaseEntity implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-    
+
 }

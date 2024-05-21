@@ -13,35 +13,39 @@ import com.example.librarymanagement.modal.User;
 import com.example.librarymanagement.service.AuthenticationService;
 import com.example.librarymanagement.service.JwtService;
 
+import io.swagger.v3.core.util.Json;
+
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
-    private final JwtService jwtService;
-    
-    private final AuthenticationService authenticationService;
+	private final JwtService jwtService;
 
-    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
-        this.jwtService = jwtService;
-        this.authenticationService = authenticationService;
-    }
+	private final AuthenticationService authenticationService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
-        User registeredUser = authenticationService.signup(registerUserDto);
+	public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
+		this.jwtService = jwtService;
+		this.authenticationService = authenticationService;
+	}
 
-        return ResponseEntity.ok(registeredUser);
-    }
+	@PostMapping("/signup")
+	public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+		User registeredUser = authenticationService.signup(registerUserDto);
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        User authenticatedUser = authenticationService.authenticate(loginUserDto);
+		return ResponseEntity.ok(registeredUser);
+	}
 
-        String jwtToken = jwtService.generateToken(authenticatedUser);
+	@PostMapping("/login")
+	public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
+		System.out.println(loginUserDto);
+		;
+		User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
-        LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setToken(jwtToken);
-        loginResponse.setExpiresIn(jwtService.getExpirationTime());
+		String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        return ResponseEntity.ok(loginResponse);
-    }
+		LoginResponse loginResponse = new LoginResponse();
+		loginResponse.setToken(jwtToken);
+		loginResponse.setExpiresIn(jwtService.getExpirationTime());
+
+		return ResponseEntity.ok(loginResponse);
+	}
 }

@@ -12,40 +12,32 @@ import com.example.librarymanagement.repository.UserRepository;
 
 @Service
 public class AuthenticationService {
-    private final UserRepository userRepository;
-    
-    private final PasswordEncoder passwordEncoder;
-    
-    private final AuthenticationManager authenticationManager;
+	private final UserRepository userRepository;
 
-    public AuthenticationService(
-        UserRepository userRepository,
-        AuthenticationManager authenticationManager,
-        PasswordEncoder passwordEncoder
-    ) {
-        this.authenticationManager = authenticationManager;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+	private final PasswordEncoder passwordEncoder;
 
-    public User signup(RegisterUserDto input) {
-        User user = new User();
-        user.setFullName(input.getFullName());
-        user.setEmail(input.getEmail());
-        user.setPassword(passwordEncoder.encode(input.getPassword()));
+	private final AuthenticationManager authenticationManager;
 
-        return userRepository.save(user);
-    }
+	public AuthenticationService(UserRepository userRepository, AuthenticationManager authenticationManager,
+			PasswordEncoder passwordEncoder) {
+		this.authenticationManager = authenticationManager;
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
 
-    public User authenticate(LoginUserDto input) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        input.getEmail(),
-                        input.getPassword()
-                )
-        );
+	public User signup(RegisterUserDto input) {
+		User user = new User();
+		user.setFullName(input.getFullName());
+		user.setEmail(input.getEmail());
+		user.setPassword(passwordEncoder.encode(input.getPassword()));
 
-        return userRepository.findByEmail(input.getEmail())
-                .orElseThrow();
-    }
+		return userRepository.save(user);
+	}
+
+	public User authenticate(LoginUserDto input) {
+		authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(input.getEmail(), input.getPassword()));
+
+		return userRepository.findByEmail(input.getEmail()).orElseThrow();
+	}
 }

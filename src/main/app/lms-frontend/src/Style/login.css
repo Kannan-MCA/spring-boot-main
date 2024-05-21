@@ -1,0 +1,55 @@
+.mainContainer {
+  position: absolute;
+  top: 150px;
+  background-color: rgba(100, 148, 237, 0.073);
+  border-top-left-radius: 130px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 150px;
+  min-height: 380px;
+  min-width: 380px;
+}
+.parent-container{
+  display: flex;
+  flex-direction: row;
+  background-color:#DFE4E7;
+}
+.imag-container{
+  background-image:url('./../image/img.jpg');
+  min-height: 88%;
+  min-width: 800px;
+  position: absolute;
+  right: 0px;
+  bottom:10px ;
+}
+.titleContainer {
+  flex-direction: row;
+  font-size: 30px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputBox {
+  height: 48px;
+  width: 300px;
+  font-size: large;
+  border-radius: 8px;
+  border: 1px solid grey;
+  padding-left: 8px;
+}
+
+.inputButton {
+  height: 48px;
+  width: 300px;
+  font-size: large;
+  border-radius: 8px;
+  border: 1px solid grey;
+  padding-left: 8px;
+}
+
+.inputButton:hover {
+  background-color: #624BA5;
+  color: #FFFFFF;
+
+}
