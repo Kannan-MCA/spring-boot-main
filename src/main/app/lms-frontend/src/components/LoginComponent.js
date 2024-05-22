@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { login } from './../service/loginService';
@@ -10,6 +10,16 @@ const Login = (props) => {
     const [passwordError, setPasswordError] = useState('')
 
     const navigate = useNavigate()
+    useEffect(() => {
+        let token = null;
+        token = sessionStorage.getItem('token');
+        if (token != null) {
+            navigate('/home')
+        } else {
+            navigate('/');
+        }
+    });
+
 
     const onButtonClick = async (event) => {
         event.preventDefault();
@@ -19,6 +29,7 @@ const Login = (props) => {
         }
         await login(user).then((res) => {
             if (res.responseCode === 200) {
+                sessionStorage.setItem("token", res.response.token);
                 navigate('/home');
             } else {
                 alert("Login Failed please check ....!")
