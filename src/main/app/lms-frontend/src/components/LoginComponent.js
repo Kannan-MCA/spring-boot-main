@@ -13,36 +13,16 @@ const Login = (props) => {
 
     const onButtonClick = async (event) => {
         event.preventDefault();
+
         let user = {
-            "username": email,
+            "email": email,
             "password": password
         }
-
-        const response = await fetch('http://localhost:8080/auth/login', {
-            method: 'POST',
-            headers: {},
-            body: JSON.stringify(user),
-        })
-        console.log(response.json())
+        let response = login(user);
+        console.log(response.token);
+        navigate('/home');
 
 
-
-
-        /*
-              let token = axios.post("http://localhost:8080/auth/login", user);
-              console.log(token);
-                
-              try {
-                      let user = {
-                          "username": username,
-                          "password": password
-                      }
-                      await login(user);
-                      navigate('/home');
-                  } catch {
-                      navigate('/');
-                  }
-              */
 
     };
 
@@ -75,7 +55,9 @@ const Login = (props) => {
                 <br />
                 <div className={'inputContainer'}>
                     <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
+
                 </div>
+                <label type="button" onClick={onButtonClick} value={'for sign-up'} />
 
             </flex>
             <div className='imag-container' />

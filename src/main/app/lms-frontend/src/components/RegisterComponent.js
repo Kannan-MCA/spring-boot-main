@@ -52,7 +52,7 @@ const Register = (props) => {
         <flex className={'parent-container'}>
             <flex className={'mainContainer'}>
                 <div className={'titleContainer'}>
-                    <div>Sign-Up</div>
+                    <div>Register</div>
                 </div>
                 <br />
                 <div className={'inputContainer'}>
