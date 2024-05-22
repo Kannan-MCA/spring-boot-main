@@ -13,18 +13,18 @@ const Login = (props) => {
 
     const onButtonClick = async (event) => {
         event.preventDefault();
-
         let user = {
             "email": email,
             "password": password
         }
-        let response = login(user);
-        console.log(response.token);
-        navigate('/home');
-
-
-
-    };
+        await login(user).then((res) => {
+            if (res.responseCode === 200) {
+                navigate('/home');
+            } else {
+                alert("Login Failed please check ....!")
+            }
+        })
+    }
 
     return (
         <flex className={'parent-container'}>

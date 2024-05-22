@@ -6,7 +6,7 @@ const HeaderComponent = () => {
             <div className="App-header">
                 <nav>
                     <div className='title'>
-                        Library Management
+                        Welcome To Module -II JAVA EE
                     </div>
 
                 </nav>
