@@ -7,15 +7,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.librarymanagement.modal.Book;
 import com.example.librarymanagement.service.BookService;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
+@RequestMapping(value = "/inventory")
 public class BookController {
 	@Autowired
 	BookService bookService;
@@ -35,7 +37,7 @@ public class BookController {
 	}
 
 	@PutMapping("/books")
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.OK)
 	public Book putMethodName(@RequestBody Book bookIn) {
 		Book bookOut = bookService.updateBook(bookIn);
 		if (bookOut != null) {
@@ -47,7 +49,7 @@ public class BookController {
 	}
 
 	@DeleteMapping("/books")
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.OK)
 	public Book deleteMethod(@RequestBody Book bookIn) {
 		Book bookOut = bookService.deleteBook(bookIn);
 		if (bookOut != null) {

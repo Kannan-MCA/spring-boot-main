@@ -13,8 +13,6 @@ import com.example.librarymanagement.modal.User;
 import com.example.librarymanagement.service.AuthenticationService;
 import com.example.librarymanagement.service.JwtService;
 
-import io.swagger.v3.core.util.Json;
-
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {

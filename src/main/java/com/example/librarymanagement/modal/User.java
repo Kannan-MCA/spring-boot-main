@@ -1,11 +1,8 @@
 package com.example.librarymanagement.modal;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,6 +13,7 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 @Entity
 public class User extends BaseEntity implements UserDetails {
+
 	@Column(nullable = false)
 	private String fullName;
 
@@ -24,14 +22,6 @@ public class User extends BaseEntity implements UserDetails {
 
 	@Column(nullable = false)
 	private String password;
-
-	@CreationTimestamp
-	@Column(updatable = false, name = "created_at")
-	private Date createdAt;
-
-	@UpdateTimestamp
-	@Column(name = "updated_at")
-	private Date updatedAt;
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
