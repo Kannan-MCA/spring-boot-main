@@ -3,6 +3,8 @@ package com.example.librarymanagement.modal;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -25,7 +27,7 @@ import lombok.ToString;
 public class Role extends BaseEntity {
 	@Column(name = "role_name")
 	private String role_name;
-
+	@JsonIgnore
 	@ManyToMany(mappedBy = "roles")
 	private Set<Department> departments = new HashSet<Department>();
 }

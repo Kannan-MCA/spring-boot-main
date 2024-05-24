@@ -37,7 +37,6 @@ public class Department extends BaseEntity {
 	}
 
 	@JoinTable(name = "department_role_Mapping", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-
 	@ManyToMany
 	private Set<Role> roles = new HashSet<Role>();
 }

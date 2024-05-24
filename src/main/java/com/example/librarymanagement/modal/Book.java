@@ -85,9 +85,4 @@ public class Book extends BaseEntity {
 	public String getPublication() {
 		return this.publication;
 	}
-
-	public String toString() {
-		return "\n Author :" + this.author + "\n Price : " + this.price + "\n pages : " + this.pages + "\n title :"
-				+ this.title + "\n Discription : " + this.discription + "\n publication : " + this.publication;
-	}
 }
