@@ -24,6 +24,16 @@ export const signup = (user) => {
   return axios.post(baseURL, user)
 }
 
+export const validateSession=()=>{
+  var setupTime = sessionStorage.getItem('setupTime');
+  var now = new Date().getTime();
+  var elapsedTime = (now-setupTime);
+
+  if(now-setupTime > sessionStorage.getItem('expiresIn')) {
+    sessionStorage.clear();
+}
+}
+
 const authProvider = {
   checkAuth: () => {
     return sessionStorage.getItem('token')

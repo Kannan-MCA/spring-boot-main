@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { login } from './../service/loginService';
+import { login, validateSession } from './../service/loginService';
 import './../Style/login.css';
 const Login = (props) => {
     const [email, setEmail] = useState('')
@@ -11,13 +11,12 @@ const Login = (props) => {
 
     const navigate = useNavigate()
     useEffect(() => {
+        validateSession();
         let token = null;
         token = sessionStorage.getItem('token');
         if (token != null) {
             navigate('/home')
-        } else {
-            navigate('/');
-        }
+        } 
     });
 
 
@@ -30,6 +29,9 @@ const Login = (props) => {
         await login(user).then((res) => {
             if (res.responseCode === 200) {
                 sessionStorage.setItem("token", res.response.token);
+                sessionStorage.setItem('setupTime', new Date().getTime());
+                sessionStorage.setItem('expiresIn', res.response.expiresIn);
+                
                 navigate('/home');
             } else {
                 alert("Login Failed please check ....!")
