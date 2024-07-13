@@ -3,6 +3,7 @@ import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { login, validateSession } from './../service/loginService';
 import './../Style/login.css';
+const baseURL = 'http://192.168.0.102:8080';
 const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,28 +17,49 @@ const Login = (props) => {
         token = sessionStorage.getItem('token');
         if (token != null) {
             navigate('/home')
-        } 
+        }
     });
 
 
-    const onButtonClick = async (event) => {
+    const onButtonClick = (event) => {
         event.preventDefault();
         let user = {
             "email": email,
             "password": password
         }
-        await login(user).then((res) => {
-            if (res.responseCode === 200) {
-                sessionStorage.setItem("token", res.response.token);
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(user)
+        };
+        fetch(baseURL + "/auth/login", requestOptions).then(r =>  r.json().then(data => ({status: r.status, body: data})))
+        .then(obj => {
+            if (obj.status ===200 ) {
+                sessionStorage.setItem("token", obj.body.token);
                 sessionStorage.setItem('setupTime', new Date().getTime());
-                sessionStorage.setItem('expiresIn', res.response.expiresIn);
-                
+                sessionStorage.setItem('expiresIn', obj.body.expiresIn);
                 navigate('/home');
             } else {
                 alert("Login Failed please check ....!")
             }
-        })
-    }
+        });
+        
+        /*
+        .then((response) => response)
+            .then((result) => {
+
+                console.log(result.text())
+
+                
+            })
+            .catch((error) => console.error(error));
+*/
+    
+}
 
     return (
         <flex className={'parent-container'}>
@@ -70,7 +92,7 @@ const Login = (props) => {
                     <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
 
                 </div>
-                <label type="button" onClick={onButtonClick} value={'for sign-up'} />
+                <label type="button" value={'for sign-up'} />
 
             </flex>
             <div className='imag-container' />

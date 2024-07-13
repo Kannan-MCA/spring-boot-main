@@ -10,7 +10,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,6 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "department")
@@ -39,4 +37,9 @@ public class Department extends BaseEntity {
 	@JoinTable(name = "department_role_Mapping", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@ManyToMany
 	private Set<Role> roles = new HashSet<Role>();
+
+	public void setRoles(Set<Role> roleSet) {
+		// TODO Auto-generated method stub
+		
+	}
 }

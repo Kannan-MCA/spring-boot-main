@@ -93,7 +93,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Library Application
+            Welcome To Module-II Java-EE
           </Typography>
         </Toolbar>
       </AppBar>

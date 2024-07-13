@@ -1,60 +1,32 @@
 import axios from 'axios'
+import { json } from 'react-router-dom';
 
-const baseURL = 'http://localhost:8080';
 
-export const login = (requestBody: user) => {
-  return axios
-    .post(
-      `${baseURL}/auth/login`,
-      requestBody
-    )
-    .then(response => {
-      const respData = {
-        responseCode: response.status,
-        response: response.data
-      };
-      return respData;
-    }).catch((error) => alert(`Error: ${error.message}`));
-}
+
+
+
+export const login = (requestBody) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(requestBody),
+    redirect: "follow"
+  };
+  return fetch(baseURL + "/auth/login", requestOptions)
+};
 
 //sessionStorage.setItem('token', response.token);
 //return Promise.resolve('/');
 
-export const signup = (user) => {
-  return axios.post(baseURL, user)
-}
-
-export const validateSession=()=>{
+export const validateSession = () => {
   var setupTime = sessionStorage.getItem('setupTime');
   var now = new Date().getTime();
-  var elapsedTime = (now-setupTime);
+  var elapsedTime = (now - setupTime);
 
-  if(now-setupTime > sessionStorage.getItem('expiresIn')) {
+  if (now - setupTime > sessionStorage.getItem('expiresIn')) {
     sessionStorage.clear();
-}
-}
-
-const authProvider = {
-  checkAuth: () => {
-    return sessionStorage.getItem('token')
-      ? Promise.resolve()
-      : Promise.reject();
-  },
-  logout: () => {
-    sessionStorage.removeItem('token');
-    return Promise.resolve('/login');
-  },
-  login: ({ requestBody }) => {
-    axios
-      .post(
-        `${baseURL}/auth/login`,
-        requestBody
-      ).then(response => {
-        localStorage.setItem('token', token);
-
-        // Redirect the user to the default route
-        return Promise.resolve('/');
-      });
-  },
-
+  }
 };
