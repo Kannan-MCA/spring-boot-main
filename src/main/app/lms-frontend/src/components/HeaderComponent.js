@@ -10,11 +10,10 @@ import logo from './../image/logo.png';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "./../App.css";
-import AnchorTemporaryDrawer from './PersistentDrawerLeft';
 export default function HeaderComponent() {
     const [auth, setAuth] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const [anchorE2, setAnchorE2] = React.useState(null);
     React.useEffect(() => {
         var token = sessionStorage.getItem('token');
         if (token != null) {
@@ -32,23 +31,38 @@ export default function HeaderComponent() {
         setAnchorEl(null);
     };
 
+
+    const handleDrawer = (event) => {
+        setAnchorE2(event.currentTarget);
+    };
+
+    const handleDrawerClose = () => {
+        setAnchorE2(null);
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
 
-            <AnchorTemporaryDrawer />
 
             <AppBar position="static" >
 
                 <Toolbar>
+                {auth && (
                     <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
                         aria-label="menu"
+                        aria-controls="menu-drawer"
+                        aria-haspopup="true"
+                        onClick={handleDrawer}
                         sx={{ mr: 2 }}
                     >
                         <MenuIcon />
                     </IconButton>
+                    )}
+
+
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <img src={logo} className='logo' />
                     </Typography>
@@ -64,6 +78,26 @@ export default function HeaderComponent() {
                             >
                                 <AccountCircle />
                             </IconButton>
+                            <Menu
+                                id="menu-drawer"
+                                anchorEl={anchorE2}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorE2)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleDrawerClose}>Home</MenuItem>
+                                <MenuItem onClick={handleDrawerClose}>Customer</MenuItem>
+
+                            </Menu>
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
@@ -81,6 +115,7 @@ export default function HeaderComponent() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Sign-Out</MenuItem>
                             </Menu>
                         </div>
                     )}

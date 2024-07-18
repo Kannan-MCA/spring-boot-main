@@ -3,7 +3,7 @@ import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { login, validateSession } from './../service/loginService';
 import './../Style/login.css';
-const baseURL = 'http://192.168.0.102:8080';
+const baseURL = 'http://192.168.56.1:8080';
 const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -47,17 +47,6 @@ const Login = (props) => {
                 alert("Login Failed please check ....!")
             }
         });
-        
-        /*
-        .then((response) => response)
-            .then((result) => {
-
-                console.log(result.text())
-
-                
-            })
-            .catch((error) => console.error(error));
-*/
     
 }
 
@@ -82,6 +71,7 @@ const Login = (props) => {
                     <input
                         value={password}
                         placeholder="Enter your password here"
+                        type='password'
                         onChange={(ev) => setPassword(ev.target.value)}
                         className={'inputBox'}
                     />

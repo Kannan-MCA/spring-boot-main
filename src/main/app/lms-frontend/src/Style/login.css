@@ -1,7 +1,7 @@
 .mainContainer {
   position: absolute;
   top: 120px;
-  background-color: rgba(100, 148, 237, 0.174);
+  background-color: rgba(148, 189, 255, 0.151);
   border-top-left-radius: 130px;
   border-top-right-radius: 180px;
   border-bottom-left-radius: 80px;
@@ -13,7 +13,7 @@
 .parent-container{
   display: flex;
   flex-direction: row;
-  background-color:#dfe4e7;
+  background-color:#FFFFFF;
   min-width:100%;
   min-height: 550px;
   position: absolute;
@@ -23,11 +23,13 @@
 }
 .imag-container{
   background-image:url('./../image/img.jpg');
-  min-height: 88%;
-  min-width: 800px;
+  min-height: 98%;
+  min-width: 50%;
   position: absolute;
   right: 0px;
-  bottom:10px ;
+  background-position: -110px,110px;
+  background-size: 630px,287px;
+  background-repeat:no-repeat;
 }
 .titleContainer {
   flex-direction: row;
@@ -43,10 +45,14 @@
   width: 300px;
   font-size: large;
   border-radius: 8px;
-  border: 1px solid grey;
+  border: 1px solid #0257b8;
   padding-left: 8px;
   margin-left: 80px;
+  background-color: rgba(148, 189, 255, 0.151);
   
+}
+.inputBox :focus{
+  border: 1px solid #0257b8;
 }
 
 .inputButton {
@@ -54,13 +60,14 @@
   width: 300px;
   font-size: large;
   border-radius: 8px;
-  border: 1px solid grey;
+  border: 1px solid #0257b8;
+  background-color: rgba(148, 189, 255, 0.151);
   padding-left: 8px;
   margin-left: 80px;
 }
 
 .inputButton:hover {
-  background-color: #624BA5;
+  background-color: #0257b8;
   color: #FFFFFF;
 
 }

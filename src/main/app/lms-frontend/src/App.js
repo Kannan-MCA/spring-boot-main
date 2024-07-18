@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 import FooterComponent from './components/FooterComponent';
-import PersistentDrawerLeft from './components/PersistentDrawerLeft';
+import HeaderComponent from './components/HeaderComponent';
 
 import Dshboard from './components/Dashboard';
 import EmployeeComponent from './components/EmployeeComponent';
@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-      <PersistentDrawerLeft/>
+      <HeaderComponent/>
         <div className= "container">
           <Routes>
               <Route path = "/" element = { <LoginComponent /> }></Route>
