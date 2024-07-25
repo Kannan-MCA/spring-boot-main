@@ -27,6 +27,8 @@ export const validateSession = () => {
   var elapsedTime = (now - setupTime);
 
   if (now - setupTime > sessionStorage.getItem('expiresIn')) {
+    sessionStorage.setItem('token', null);
+    sessionStorage.setItem('setupTime', null);
     sessionStorage.clear();
   }
 };

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,12 +10,17 @@ import logo from './../image/logo.png';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "./../App.css";
+import {useNavigate } from 'react-router-dom';
+
+
 export default function HeaderComponent() {
-    const [auth, setAuth] = React.useState(false);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [anchorE2, setAnchorE2] = React.useState(null);
-    React.useEffect(() => {
-        var token = sessionStorage.getItem('token');
+    const navigate = useNavigate();
+    const [auth, setAuth] = useState(false);
+    const [token, setToken] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorE2, setAnchorE2] = useState(null);
+    useEffect(() => {
+        setToken(sessionStorage.getItem('token'));
         if (token != null) {
             setAuth(true);
         }
@@ -39,6 +44,16 @@ export default function HeaderComponent() {
     const handleDrawerClose = () => {
         setAnchorE2(null);
     };
+
+    const logOut = () => {
+        setToken(null);
+        setAuth(false);
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("setupTime");
+        sessionStorage.removeItem("expiresIn");
+        setAnchorE2(null);
+        navigate("/");
+      };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -115,7 +130,7 @@ export default function HeaderComponent() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Sign-Out</MenuItem>
+                                <MenuItem onClick={logOut}>Sign-Out</MenuItem>
                             </Menu>
                         </div>
                     )}
