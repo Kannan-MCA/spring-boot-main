@@ -1,0 +1,31 @@
+.card-container {
+    display: flex;
+    margin-top: 30px;
+    width: 75%;
+}
+
+.card-view {
+    border-radius: 5px;
+    border: solid black 1px;
+    border-width: 1px;
+    display: flex;
+    width: 340px;
+    height: 120px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.photo {
+    border-radius: 5px;
+    background-color: cornsilk;
+    height: 120px;
+    width: 80px;
+    border: solid black 1px;
+}
+
+.card-body {
+    padding: 5px;
+    margin: 5px;
+}

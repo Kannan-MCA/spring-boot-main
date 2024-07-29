@@ -5,6 +5,8 @@ import HeaderComponent from './components/HeaderComponent';
 
 import Dshboard from './components/Dashboard';
 import EmployeeComponent from './components/EmployeeComponent';
+import UplodeQustion from './components/UplodeQustions';
+import Exam from './components/Exam';
 
 import LoginComponent from './components/LoginComponent';
 import Register from './components/RegisterComponent';
@@ -14,7 +16,7 @@ function App() {
     <div>
       <BrowserRouter>
         <HeaderComponent />
-        <div className="container">
+      
           <Routes>
             <Route path="/" element={<LoginComponent />}></Route>
             <Route path="/register" element={<Register />}></Route>
@@ -23,9 +25,11 @@ function App() {
               <Route path="/home" element={<Dshboard/>}></Route>
               <Route path="/add-employee" element={<EmployeeComponent />} ></Route>
               <Route path="/edit-employee/:id" element={<EmployeeComponent />}></Route>
+              <Route path="/qustion" element={<UplodeQustion/>}></Route>
+              <Route path="/exam" element={<Exam/>}></Route>
             </Route>
           </Routes>
-        </div>
+
         <FooterComponent />
       </BrowserRouter>
     </div>

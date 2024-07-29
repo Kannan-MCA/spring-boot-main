@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const EMPLOYEE_BASE_REST_API_URL = 'http://192.168.0.101:8080/';
+const EMPLOYEE_BASE_REST_API_URL = 'http://192.168.0.102:8080/';
 
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "");

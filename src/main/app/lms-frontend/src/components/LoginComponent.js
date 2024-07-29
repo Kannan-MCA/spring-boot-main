@@ -5,23 +5,15 @@ import { json, useNavigate } from 'react-router-dom';
 import { login, validateSession } from './../service/loginService';
 import './../Style/login.css';
 
-const baseURL = 'http://192.168.0.102:8080';
+const baseURL = 'http://192.168.141.167:8080';
 const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-
-    const navigate = useNavigate()
-    useEffect(() => {
-        validateSession();
-        let token = null;
-        token = sessionStorage.getItem('token');
-        if (token != null) {
-            navigate('/home')
-        }
-    });
-
+    const [auth, setAuth] = useState(false);
+    const [token, setToken] = useState(null);
+    const navigate = useNavigate();
 
     const onButtonClick = (event) => {
 
@@ -46,7 +38,6 @@ const Login = (props) => {
                         sessionStorage.setItem("token", obj.body.token);
                         sessionStorage.setItem('setupTime', new Date().getTime());
                         sessionStorage.setItem('expiresIn', obj.body.expiresIn);
-                        navigate('/home');
                     } else {
                         alert("Login Failed please check ....!")
                     }

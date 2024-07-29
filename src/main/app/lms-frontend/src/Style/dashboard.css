@@ -1,3 +1,15 @@
 .filler-image{
     width:70%;
 }
+.top-row{
+    display: flex;
+    width: 100%;
+}
+.calendar-view{width: 30%;margin: 30px;}
+.card-container{
+    width: 70%;
+}
+.card-view{
+    display: flex;
+    margin-right:20px;
+}

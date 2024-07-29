@@ -1,22 +1,29 @@
 import React from 'react'
 import './../Style/dashboard.css';
-import Card from "./Card.js";
-import StickyHeadTable from './StickyHeadTable';
-const Dshboard = () => {
-    return (
-        <div>
-           <Card
-        imgSrc="https://source.unsplash.com/WLUHO9A_xik/300x200/"
-        spanTag="4 Day ago"
-        constentHead="Post One"
-        constentPara="Croque monsieur paneer cheese triangles. When the cheese comes out everybody's happy cheeseburger melted cheese pepper jack croque"
-        reads="3224"
-        views="7"
-        comment="21"
-        color="rgb(248, 51, 84)"
-      />
-        </div>
-    )
-}
+import Calendar from 'react-calendar';
+import { useState } from 'react';
+import 'react-calendar/dist/Calendar.css';
+import Card from './Card';
+import cardimage from './../image/logo.png';
 
+const Dshboard = () => {
+  const [value, onChange] = useState(new Date());
+
+  return (
+
+    <div className='container'>
+      <div className='top-row'>
+
+        <div className="card-container">
+          <Card image={cardimage} title={"MySql"} content={"Mycontent"} />
+        </div>
+        <div className='calendar-view'> <Calendar value={value} onChange={onChange} /></div>
+
+      </div>
+
+
+    </div>
+
+  )
+}
 export default Dshboard

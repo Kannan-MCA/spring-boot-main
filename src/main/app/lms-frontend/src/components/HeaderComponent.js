@@ -5,17 +5,22 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from './../image/logo.png';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "./../App.css";
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Avatar } from '@mui/material';
 
 
 export default function HeaderComponent() {
+    let userObj={
+        name:"MCET"
+    };
     const navigate = useNavigate();
     const [auth, setAuth] = useState(false);
+    const [user, setUser] = useState(userObj);
+    
     const [token, setToken] = useState(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorE2, setAnchorE2] = useState(null);
@@ -23,6 +28,7 @@ export default function HeaderComponent() {
         setToken(sessionStorage.getItem('token'));
         if (token != null) {
             setAuth(true);
+
         }
     });
 
@@ -53,7 +59,7 @@ export default function HeaderComponent() {
         sessionStorage.removeItem("expiresIn");
         setAnchorE2(null);
         navigate("/");
-      };
+    };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -62,19 +68,19 @@ export default function HeaderComponent() {
             <AppBar position="static" >
 
                 <Toolbar>
-                {auth && (
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        aria-controls="menu-drawer"
-                        aria-haspopup="true"
-                        onClick={handleDrawer}
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {auth && (
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            aria-controls="menu-drawer"
+                            aria-haspopup="true"
+                            onClick={handleDrawer}
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
                     )}
 
 
@@ -91,7 +97,8 @@ export default function HeaderComponent() {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                <AccountCircle />
+
+                                <Avatar>{user.name.charAt(0)}</Avatar>
                             </IconButton>
                             <Menu
                                 id="menu-drawer"

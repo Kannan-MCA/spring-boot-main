@@ -1,0 +1,29 @@
+.prime-container {
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.terms {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-view {
+    border: 1px solid #0d6dfc;
+    width: 140px;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-content: center;
+}
+
+.main-container {
+    display: flex;
+}
+.button-view{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border: none;
+}
