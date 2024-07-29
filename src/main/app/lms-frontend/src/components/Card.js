@@ -1,7 +1,8 @@
 import './../Style/Card.css';
-const Card = ({image,title,content}) => {
+const Card = ({image,title,content,onClick}) => {
+    
     return (
-        <div className='top-row'>
+        <div className='top-row' onClick={onClick}>
             <div className="card-view">
                 
                 <div className='card-image'> 

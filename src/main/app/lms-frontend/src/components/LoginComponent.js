@@ -5,7 +5,7 @@ import { json, useNavigate } from 'react-router-dom';
 import { login, validateSession } from './../service/loginService';
 import './../Style/login.css';
 
-const baseURL = 'http://192.168.141.167:8080';
+const baseURL = 'http://192.168.0.102:8080';
 const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -38,8 +38,9 @@ const Login = (props) => {
                         sessionStorage.setItem("token", obj.body.token);
                         sessionStorage.setItem('setupTime', new Date().getTime());
                         sessionStorage.setItem('expiresIn', obj.body.expiresIn);
+                        
                     } else {
-                        alert("Login Failed please check ....!")
+                        alert("Login Failed please check ....!");
                     }
                 });
 

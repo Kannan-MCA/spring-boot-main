@@ -4,7 +4,6 @@ import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 
 import Dshboard from './components/Dashboard';
-import EmployeeComponent from './components/EmployeeComponent';
 import UplodeQustion from './components/UplodeQustions';
 import Exam from './components/Exam';
 
@@ -16,19 +15,17 @@ function App() {
     <div>
       <BrowserRouter>
         <HeaderComponent />
-      
-          <Routes>
-            <Route path="/" element={<LoginComponent />}></Route>
-            <Route path="/register" element={<Register />}></Route>
 
-            <Route element={<PrivateRoutes />}>
-              <Route path="/home" element={<Dshboard/>}></Route>
-              <Route path="/add-employee" element={<EmployeeComponent />} ></Route>
-              <Route path="/edit-employee/:id" element={<EmployeeComponent />}></Route>
-              <Route path="/qustion" element={<UplodeQustion/>}></Route>
-              <Route path="/exam" element={<Exam/>}></Route>
-            </Route>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<LoginComponent />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+
+          <Route element={<PrivateRoutes />}>
+            <Route path="/home" element={<Dshboard />}></Route>
+            <Route path="/qustion" element={<UplodeQustion />}></Route>
+            <Route path="/exam" element={<Exam />}></Route>
+          </Route>
+        </Routes>
 
         <FooterComponent />
       </BrowserRouter>
