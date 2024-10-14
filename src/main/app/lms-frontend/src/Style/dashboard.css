@@ -1,15 +1,12 @@
-.filler-image{
-    width:70%;
+.calendar-view {
+  width: 100%; 
 }
-.top-row{
+
+.parent-container {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    margin-top: 100px;
 }
-.calendar-view{width: 30%;margin: 30px;}
-.card-container{
-    width: 70%;
-}
-.card-view{
-    display: flex;
-    margin-right:20px;
+.data-table-view{
+    width: 98%; 
 }

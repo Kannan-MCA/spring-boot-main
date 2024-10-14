@@ -9,23 +9,33 @@ import logo from './../image/logo.png';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "./../App.css";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Avatar } from '@mui/material';
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
-
+import { useAuth } from '../context/AuthContext';
 export default function HeaderComponent() {
+    const { logout } = useAuth();
+    const { authUser } = useAuth();
+    const navigate = useNavigate();
 
+    const initialAuthUserObj = {
+        name: "",
+        token: "",
+        setupTime: "",
+        expiresIn: ""
+    }
+
+    const [user, setUser] = useState(authUser);
+    const location = useLocation();
+    const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
@@ -34,9 +44,14 @@ export default function HeaderComponent() {
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
-                {['User', 'Role', 'Department', 'Exam'].map((text, index) => (
+                {['Home', 'User', 'Role', 'Department', 'Exam'].map((text, index) => (
                     <ListItem key={text} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton
+                            onClick={(event) => {
+                                event.preventDefault();
+                                navigate("/" + event.target.textContent);
+                            }}
+                        >
                             <ListItemIcon>
                                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                             </ListItemIcon>
@@ -49,27 +64,11 @@ export default function HeaderComponent() {
 
         </Box>
     );
-
-
-    let userObj = {
-        name: "MCET"
-    };
-    const navigate = useNavigate();
-    const [auth, setAuth] = useState(false);
-    const [user, setUser] = useState(userObj);
-
-    const [token, setToken] = useState(null);
-    const [anchorEl, setAnchorEl] = useState(null);
-
     useEffect(() => {
-        setToken(sessionStorage.getItem('token'));
-        if (token != null) {
-            setAuth(true);
-            //navigate("/home");
-        }
-    });
 
+        (user.token != "" && location.pathname === "/") ? navigate("/home") : navigate("/");
 
+    }, []);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -79,26 +78,20 @@ export default function HeaderComponent() {
         setAnchorEl(null);
     };
 
+    setTimeout(() => {
+        setUser(initialAuthUserObj);
+    }, user.expiresIn)
 
-
-    const logOut = () => {
-        setToken(null);
-        setAuth(false);
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("setupTime");
-        sessionStorage.removeItem("expiresIn");
-
-        navigate("/");
+    const handleLogout = () => {
+       let islogout = logout
     };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-
-
-            <AppBar position="static" >
+            <AppBar position="fixed" >
 
                 <Toolbar>
-                    {auth && (
+                    {user.token != "" && (
                         <IconButton
                             size="large"
                             edge="start"
@@ -117,7 +110,7 @@ export default function HeaderComponent() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <img src={logo} className='logo' />
                     </Typography>
-                    {auth && (
+                    {user.token != "" && (
                         <div>
                             <IconButton
                                 size="large"
@@ -129,6 +122,7 @@ export default function HeaderComponent() {
                             >
 
                                 <Avatar>{user.name.charAt(0)}</Avatar>
+
                             </IconButton>
 
 
@@ -149,7 +143,7 @@ export default function HeaderComponent() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={logOut}>Sign-Out</MenuItem>
+                                <MenuItem onClick={handleLogout}>Sign-Out</MenuItem>
                             </Menu>
                         </div>
                     )}
@@ -162,4 +156,3 @@ export default function HeaderComponent() {
         </Box>
     );
 }
-

@@ -29,11 +29,12 @@ const style = {
 const baseURL = 'http://192.168.0.101:8080';
 const Exam = (props) => {
     let examObject = {
-        name: "Java-Beginer",
+        title: "Java-Beginer",
         Duriation: "15",
         Subject: "Java Programing",
         TotalnumberofQustions: "150",
-        qustionSet: [{
+        qustionSet: [
+            {
             qustion: "Which of the following option leads to the portability and security of Java?",
             answer: "optionOne",
             explination: "The output of the Java compiler is bytecode, which leads to the security and portability of the Java code. It is a highly developed set of instructions that are designed to be executed by the Java runtime system known as Java Virtual Machine (JVM). The Java programs executed by the JVM that makes the code portable and secure. Because JVM prevents the code from generating its side effects. The Java code is portable, as the same byte code can run on any platform.",

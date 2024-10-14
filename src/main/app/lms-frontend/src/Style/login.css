@@ -10,6 +10,11 @@
   min-width: 480px;
   left: -10px;
 }
+.errorLabel{
+  padding: 5px;
+  color: red;
+  font-weight:lighter;
+}
 .parent-container{
   display: flex;
   flex-direction: row;
