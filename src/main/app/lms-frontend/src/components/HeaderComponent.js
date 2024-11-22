@@ -33,7 +33,8 @@ export default function HeaderComponent() {
         expiresIn: ""
     }
 
-    const [user, setUser] = useState(authUser);
+    const [user, setUser] = useState(initialAuthUserObj);
+
     const location = useLocation();
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = React.useState(false);
@@ -78,9 +79,6 @@ export default function HeaderComponent() {
         setAnchorEl(null);
     };
 
-    setTimeout(() => {
-        setUser(initialAuthUserObj);
-    }, user.expiresIn)
 
     const handleLogout = () => {
        let islogout = logout

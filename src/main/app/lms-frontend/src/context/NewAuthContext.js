@@ -2,14 +2,14 @@ import React, { createContext, useReducer } from 'react';
 
 const initialState = { isAuthenticated: false };
 
-const reducer = (state, action) => {
+const authReducer = (state, action) => {
   switch (action.type) {
-    case 'login':
-      return { isAuthenticated: true };
-    case 'logout':
-      return { isAuthenticated: false };
+    case 'LOGIN':
+      return { ...state, isAuthenticated: true };
+    case 'LOGOUT':
+      return { ...state, isAuthenticated: false };
     default:
-      throw new Error();
+      throw new Error('Unknown action type');
   }
 };
 

@@ -27,157 +27,110 @@ const style = {
 };
 
 const baseURL = 'http://192.168.0.101:8080';
-const Exam = (props) => {
-    let examObject = {
-        title: "Java-Beginer",
-        Duriation: "15",
-        Subject: "Java Programing",
-        TotalnumberofQustions: "150",
-        qustionSet: [
-            {
-            qustion: "Which of the following option leads to the portability and security of Java?",
-            answer: "optionOne",
-            explination: "The output of the Java compiler is bytecode, which leads to the security and portability of the Java code. It is a highly developed set of instructions that are designed to be executed by the Java runtime system known as Java Virtual Machine (JVM). The Java programs executed by the JVM that makes the code portable and secure. Because JVM prevents the code from generating its side effects. The Java code is portable, as the same byte code can run on any platform.",
-            optionOne: "Bytecode is executed by JVM",
-            optionTwo: "The applet makes the Java code secure and portable",
-            optionThree: "Use of exception handling",
-            optionFour: "Dynamic binding between objects"
-        },
-        {
-            qustion: "optionTwo",
-            answer: "2",
-            explination: "2",
-            optionOne: "2",
-            optionTwo: "2",
-            optionThree: "2",
-            optionFour: "2"
-        }]
-    };
+const Exam = () => {
+  const [exam, setExam] = useState({
+    title: 'Java-Beginer',
+    duration: '15',
+    subject: 'Java Programing',
+    totalQuestions: '150',
+    questionSet: [
+      {
+        question: 'Which of the following options leads to the portability and security of Java?',
+        answer: 'Bytecode is executed by JVM',
+        explanation: 'The output of the Java compiler is bytecode, which leads to the security and portability of the Java code. It is a highly developed set of instructions that are designed to be executed by the Java runtime system known as Java Virtual Machine (JVM). The Java programs executed by the JVM that makes the code portable and secure. Because JVM prevents the code from generating its side effects. The Java code is portable, as the same byte code can run on any platform.',
+        options: [
+          'Bytecode is executed by JVM',
+          'The applet makes the Java code secure and portable',
+          'Use of exception handling',
+          'Dynamic binding between objects',
+        ],
+      },
+    ],
+  });
 
-    let examSetObject = {
-        candidateId:"",
-        departmentId:"",
-        subjectId:"",
-        examId:"",
-        awnwerSet:[{
-            qustionId:"",
-            answer:"",
-            actualAnswer:"",
-            timeTakenToPrediction:"",
-        }]
-    };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [answerValue, setAnswerValue] = useState('');
 
-    const [exam, setExam] = useState(examObject);
-    const [examSet, setExamSet] = useState(examSetObject);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleChange = (event) => {
+    setAnswerValue(event.target.value);
+  };
 
-
-
-    const [currentindex, setIndex] = useState(0);
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [answervalue, setAnswerValue] = React.useState('');
-    const handleChange = (event) => {
-        setAnswerValue(event.target.value);
-
-    };
-
-    const nextindex = () => {
-        if (currentindex <= exam.qustionSet.length) {
-            let index = currentindex + 1;
-            setIndex(index);
-        }
+  const nextQuestion = () => {
+    if (currentIndex < exam.questionSet.length - 1) {
+      setCurrentIndex(currentIndex + 1);
     }
-    const prviousindex = () => {
-        if (currentindex > 0) {
-            let index = currentindex - 1;
-            setIndex(index);
-        }
-
+  };
+  const previousQuestion = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
     }
+  };
 
-    const validateAnswer = (selected, actule) => {
+  return (
+    <div className='main-container'>
+      <div className='prime-container'>
+        <div className='terms'>
+          <label>Name of the Exam: {exam.title}</label>
+          <label>Duration: {exam.duration} min</label>
+          <label>Subject: {exam.subject}</label>
+          <label>Total Number Of Questions: {exam.totalQuestions}</label>
+        </div>
 
-    }
+        <Button variant='outlined' onClick={handleOpen}>
+          Start
+        </Button>
+      </div>
 
-    return (
-        <div className='main-container'>
-            <div className='prime-container'>
-                <div className='terms'>
-                    <label>Name of the Exam : {examObject.name}</label>
-                    <label>Duriation : {examObject.Duriation} min</label>
-                    <label>Subject : {examObject.Subject}</label>
-                    <label>Total Number Of Qustions : {examObject.TotalnumberofQustions}</label>
-
-                </div>
-
-
-                <Button variant="outlined" onClick={handleOpen}>
-                    Start
-                </Button>
-
-
-            </div>
-            <div className='prime-container'>
-                <div className='terms'>
-                    <label>Qustion Tryed : {examObject.name}</label>
-                    <label>Wrong Answer : {examObject.Duriation} </label>
-                    <label>Score : {examObject.Subject}</label>
-                    <label>Score in % : {examObject.Subject}</label>
-                </div>
-
-
-                <Button variant="outlined">
-                    Reveal
-                </Button>
-
-
-            </div>
-
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Box sx={style}>
+          <div>
+            {exam.questionSet[currentIndex].question}
+          </div>
+          <FormControl>
+            <FormLabel id='demo-radio-buttons-group-label'>
+              Choose Your Answer
+            </FormLabel>
+            <RadioGroup
+              aria-labelledby='demo-radio-buttons-group-label'
+              name='radio-buttons-group'
+              value={answerValue}
+              onChange={handleChange}
             >
-                <Box sx={style}>
-                    <div>
-                        {exam.qustionSet[currentindex].qustion}
-                    </div>
-                    <FormControl>
-                        <FormLabel id="demo-radio-buttons-group-label">Choose Your Answer</FormLabel>
-                        <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            name="radio-buttons-group"
-                            value={answervalue}
-                            onChange={handleChange}
-                        >
-                            <FormControlLabel value="optionOne" control={<Radio />} label={exam.qustionSet[currentindex].optionOne} />
-                            <FormControlLabel value="optionTwo" control={<Radio />} label={exam.qustionSet[currentindex].optionTwo} />
-                            <FormControlLabel value="optionThree" control={<Radio />} label={exam.qustionSet[currentindex].optionThree} />
-                            <FormControlLabel value="optionFour" control={<Radio />} label={exam.qustionSet[currentindex].optionFour} />
-                        </RadioGroup>
-                    </FormControl>
-                    <div className='button-view'>
-                        <Button color='success' variant="outlined" onClick={""}>
-                            Submit Your Answer
-                        </Button>
-                    </div>
+              {exam.questionSet[currentIndex].options.map((option) => (
+                <FormControlLabel
+                  value={option}
+                  control={<Radio />}
+                  label={option}
+                  key={option}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+          <div className='button-view'>
+            <Button color='success' variant='outlined'>
+              Submit Your Answer
+            </Button>
+          </div>
 
-                    <div className='button-view'>
-                        <Button variant="outlined" onClick={prviousindex}>
-                            Prvious
-                        </Button>
-                        <Button variant="outlined" onClick={nextindex}>
-                            Next
-                        </Button>
-                    </div>
-
-                </Box>
-            </Modal>
-
-
-
-        </div>)
-}
+          <div className='button-view'>
+            <Button variant='outlined' onClick={previousQuestion}>
+              Previous
+            </Button>
+            <Button variant='outlined' onClick={nextQuestion}>
+              Next
+            </Button>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
+};
 export default Exam;

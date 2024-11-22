@@ -5,88 +5,88 @@ import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-const Dshboard = () => {
-  const [value, onChange] = useState(new Date());
-  function RenderDate(props) {
+const Dashboard = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const dateCellRenderer = (props) => {
     const { hasFocus, value } = props;
-    const buttonElement = React.useRef(null);
+    const buttonElementRef = React.useRef(null);
     const rippleRef = React.useRef(null);
     React.useLayoutEffect(() => {
       if (hasFocus) {
-        //const input = buttonElement.current.querySelector('input');
-        //input?.focus();
+        // const input = buttonElementRef.current.querySelector('input');
+        // input?.focus();
       } else if (rippleRef.current) {
         rippleRef.current.stop({});
       }
     }, [hasFocus]);
     return (
-      <div style={{width:"50px"}}>
+      <div style={{ width: '50px' }}>
         {value ?? ''}
-        
       </div>
     );
-  }
+  };
   const columns = [
     {
       field: 'title',
       headerName: 'Title',
       width: 200,
-      renderCell: RenderDate,
+      renderCell: dateCellRenderer,
     },
     {
       field: 'subject',
       headerName: 'Subject',
       width: 100,
-      renderCell: RenderDate,
-    },{
-      field: 'duriation',
-      headerName: 'Duriation(In Min)',
+      renderCell: dateCellRenderer,
+    },
+    {
+      field: 'duration',
+      headerName: 'Duration (In Min)',
       width: 150,
-      renderCell: RenderDate,
-    },{
-      field: 'totalnumberofQustions',
-      headerName: 'TotalQustions',
+      renderCell: dateCellRenderer,
+    },
+    {
+      field: 'totalQuestions',
+      headerName: 'Total Questions',
       width: 100,
-      renderCell: RenderDate,
+      renderCell: dateCellRenderer,
     },
     {
       field: 'passPercentage',
       headerName: 'Pass %',
       width: 200,
-      renderCell: RenderDate,
+      renderCell: dateCellRenderer,
     },
   ];
 
   const rows = [
     {
       id: 1,
-      title:"Java MCQ",
-      subject:"Java",
-      duriation:30,
-      passPercentage:30,
-      totalnumberofQustions:10,
-      qustionSet:[{}]
+      title: 'Java MCQ',
+      subject: 'Java',
+      duration: 30,
+      passPercentage: 30,
+      totalQuestions: 10,
+      questionSet: [{}],
     },
     {
       id: 2,
-      title:"SpringBoot MCQ",
-     subject:"Java",
-     duriation:30,
-     passPercentage:50,
-     totalnumberofQustions:10,
-     qustionSet:[{}]
+      title: 'SpringBoot MCQ',
+      subject: 'Java',
+      duration: 30,
+      passPercentage: 50,
+      totalQuestions: 10,
+      questionSet: [{}],
     },
     {
       id: 3,
-      title:"React MCQ",
-      subject:"Java",
-      duriation:30,
-      passPercentage:10,
-      totalnumberofQustions:10,
-      qustionSet:[{}]
+      title: 'React MCQ',
+      subject: 'Java',
+      duration: 30,
+      passPercentage: 10,
+      totalQuestions: 10,
+      questionSet: [{}],
     },
   ];
-
 
   return (
     <div className='parent-container'>
@@ -96,10 +96,11 @@ const Dshboard = () => {
         </div>
       </div>
       <div>
-        <div className='calendar-view'> <Calendar value={value} onChange={onChange} /></div>
+        <div className='calendar-view'>
+          <Calendar value={selectedDate} onChange={setSelectedDate} />
+        </div>
       </div>
-
     </div>
-  )
-}
-export default Dshboard
+  );
+};
+export default Dashboard

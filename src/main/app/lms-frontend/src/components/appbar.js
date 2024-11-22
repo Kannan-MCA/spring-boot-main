@@ -21,15 +21,16 @@ const logoStyle = {
 };
 
 function AppAppBar({ mode, toggleColorMode }) {
-    const [open, setOpen] = React.useState(false);
+    const [drawerOpen, setDrawerOpen] = React.useState(false);
 
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
+    const handleDrawerToggle = (newOpen) => () => {
+        setDrawerOpen(newOpen);
     };
 
-    const scrollToSection = (sectionId) => {
+    const handleScrollToSection = (sectionId) => {
         const sectionElement = document.getElementById(sectionId);
         const offset = 128;
+
         if (sectionElement) {
             const targetScroll = sectionElement.offsetTop - offset;
             sectionElement.scrollIntoView({ behavior: 'smooth' });
@@ -37,7 +38,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 top: targetScroll,
                 behavior: 'smooth',
             });
-            setOpen(false);
+            setDrawerOpen(false);
         }
     };
 
@@ -84,13 +85,13 @@ function AppAppBar({ mode, toggleColorMode }) {
                                 px: 0,
                             }}
                         >
-                            <img src='./../image/logo.png'
+                            <img src="./../image/logo.png"
                                 style={logoStyle}
                                 alt="logo of sitemark"
                             />
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                                 <MenuItem
-                                    onClick={() => scrollToSection('features')}
+                                    onClick={() => handleScrollToSection('features')}
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -98,7 +99,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('testimonials')}
+                                    onClick={() => handleScrollToSection('testimonials')}
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -106,7 +107,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('highlights')}
+                                    onClick={() => handleScrollToSection('highlights')}
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -114,7 +115,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('pricing')}
+                                    onClick={() => handleScrollToSection('pricing')}
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -122,7 +123,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('faq')}
+                                    onClick={() => handleScrollToSection('faq')}
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -143,7 +144,6 @@ function AppAppBar({ mode, toggleColorMode }) {
                                 color="primary"
                                 variant="text"
                                 size="small"
-
                             >
                                 Sign in
                             </Button>
@@ -151,7 +151,6 @@ function AppAppBar({ mode, toggleColorMode }) {
                                 color="primary"
                                 variant="contained"
                                 size="small"
-
                             >
                                 Sign up
                             </Button>
@@ -161,12 +160,12 @@ function AppAppBar({ mode, toggleColorMode }) {
                                 variant="text"
                                 color="primary"
                                 aria-label="menu"
-                                onClick={toggleDrawer(true)}
+                                onClick={handleDrawerToggle(true)}
                                 sx={{ minWidth: '30px', p: '4px' }}
                             >
                                 <MenuIcon />
                             </Button>
-                            <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+                            <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle(false)}>
                                 <Box
                                     sx={{
                                         minWidth: '60dvw',
@@ -185,25 +184,26 @@ function AppAppBar({ mode, toggleColorMode }) {
                                     >
                                         <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                                     </Box>
-                                    <MenuItem onClick={() => scrollToSection('features')}>
+                                    <MenuItem onClick={() => handleScrollToSection('features')}>
                                         Features
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('testimonials')}>
+                                    <MenuItem onClick={() => handleScrollToSection('testimonials')}>
                                         Testimonials
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('highlights')}>
+                                    <MenuItem onClick={() => handleScrollToSection('highlights')}>
                                         Highlights
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('pricing')}>
+                                    <MenuItem onClick={() => handleScrollToSection('pricing')}>
                                         Pricing
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                                    <MenuItem onClick={() => handleScrollToSection('faq')}>
+                                        FAQ
+                                    </MenuItem>
                                     <Divider />
                                     <MenuItem>
                                         <Button
                                             color="primary"
                                             variant="contained"
-
                                             sx={{ width: '100%' }}
                                         >
                                             Sign up
@@ -213,7 +213,6 @@ function AppAppBar({ mode, toggleColorMode }) {
                                         <Button
                                             color="primary"
                                             variant="outlined"
-
                                             sx={{ width: '100%' }}
                                         >
                                             Sign in
