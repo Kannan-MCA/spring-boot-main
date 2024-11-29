@@ -8,36 +8,34 @@ const Login = () => {
     const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const { login } = useAuth();
+    const { login: handleLogin } = useAuth();
 
     const handleEmailChange = (event) => {
         const value = event.target.value.trim();
-        setEmailError(value === '' ? 'Invalid Email...!' : '');
+        setEmailError(value === '' ? 'Email is required' : '');
         setEmail(value);
     };
 
     const handlePasswordChange = (event) => {
         const value = event.target.value.trim();
-        setPasswordError(value === '' ? 'Invalid Password...!' : '');
+        setPasswordError(value === '' ? 'Password is required' : '');
         setPassword(value);
     };
 
-    const handleLogin = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userInput = {
+        const credentials = {
             email: email.trim(),
             password: password.trim(),
         };
 
-        if (userInput.email !== '' && userInput.password !== '') {
+        if (credentials.email && credentials.password) {
             try {
-                const response = await login(userInput);
-                if (response.status === 200) {
-                    props.history.push('/home');
-                }
+                await handleLogin(credentials);
+                window.location.href = '/home';
             } catch (error) {
-                setEmailError('Invalid Email or Password');
+                setEmailError('Invalid email or password');
             }
         }
     };
@@ -56,7 +54,7 @@ const Login = () => {
                         onChange={handleEmailChange}
                         className="inputBox"
                     />
-                    <label className="errorLabel" color="alert">{emailError}</label>
+                    <label className="errorLabel">{emailError}</label>
                 </div>
                 <br />
                 <div className="inputContainer">
@@ -67,7 +65,7 @@ const Login = () => {
                         onChange={handlePasswordChange}
                         className="inputBox"
                     />
-                    <label color="alert" className="errorLabel">{passwordError}</label>
+                    <label className="errorLabel">{passwordError}</label>
                 </div>
                 <br />
                 <div className="inputContainer">
@@ -75,7 +73,7 @@ const Login = () => {
                         id="submit"
                         className="inputButton"
                         type="button"
-                        onClick={handleLogin}
+                        onClick={handleSubmit}
                         value="Log in"
                     />
                 </div>

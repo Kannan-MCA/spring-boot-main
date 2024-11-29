@@ -24,22 +24,13 @@ import lombok.ToString;
 @Table(name = "department")
 public class Department extends BaseEntity {
 	@Column(name = "department_name")
-	private String depaartment_name;
+	private String departmentName;
 
-	public void setDepartmentName(String name) {
-		this.depaartment_name = name;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
-	public String getDepartmentName() {
-		return this.depaartment_name;
-	}
-
-	@JoinTable(name = "department_role_Mapping", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@ManyToMany
-	private Set<Role> roles = new HashSet<Role>();
-
-	public void setRoles(Set<Role> roleSet) {
-		// TODO Auto-generated method stub
-		
-	}
+	@JoinTable(name = "department_role", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 }

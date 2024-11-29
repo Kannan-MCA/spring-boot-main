@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useReducer, Context } from 'react';
 const AuthContext = createContext();
-const baseURL = 'http://127.0.0.1:8080';
+const baseURL = 'http://127.0.0.1:8090';
 const AuthProvider = ({ children }) => {
     const initialAuthState = {
         isAuthenticated: false,
@@ -14,38 +14,56 @@ const AuthProvider = ({ children }) => {
 
     const [authState, setAuthState] = useState(initialAuthState);
 
+
+    const login_user = async ({ email: userEmail, password: userPassword }) => {
+        const response = await fetch(`${baseURL}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "email": userEmail, "password": userPassword }),
+        });
+
+        const { token, expiresIn } = await response.json();
+        const now = new Date().toISOString();
+
+        setAuthState((prevState) => ({
+            ...prevState,
+            isAuthenticated: true,
+            user: { name: userEmail, token, setupTime: now, expiresIn }
+        }));
+
+        localStorage.setItem('token', authState.user.token?authState.user.token:"");
+    };
+
+
+
+
     const login = async ({ email, password }) => {
         try {
-            const res = await fetch(`${baseURL}/auth/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
+            const response = await fetch(`${baseURL}/auth/login`,
+                {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+            if (!response.ok) { throw new Error('Network response was not ok'); }
+            const { token, expiresIn } = await response.json();
+            const now = new Date().toISOString();
 
-            if (!res.ok) {
-                throw new Error('Login failed');
-            }
-
-            const { token, expiresIn } = await res.json();
-
-            setAuthState(prevState => ({
+            localStorage.setItem('token', token);
+            setAuthState((prevState) => ({
                 ...prevState,
                 isAuthenticated: true,
-                user: {
-                    name: email,
-                    token,
-                    setupTime: new Date().toISOString(),
-                    expiresIn,
-                },
+                user: { name: email, token, setupTime: now, expiresIn },
             }));
+
         } catch (error) {
-            console.error('Error during login:', error);
-            throw error;
+            setEmailError('Invalid Email or Password'); throw error;
         }
     };
 
     const logout = () => {
         setAuthState(initialAuthState);
+        localStorage.removeItem('token');
+        
     };
 
     return (
@@ -63,4 +81,4 @@ const useAuth = () => {
 
     return context;
 };
-export { AuthProvider, useAuth };
+export { AuthProvider, useAuth};

@@ -1,7 +1,6 @@
 import React from 'react'
 import './../Style/dashboard.css';
 import Calendar from 'react-calendar';
-import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
@@ -11,14 +10,7 @@ const Dashboard = () => {
     const { hasFocus, value } = props;
     const buttonElementRef = React.useRef(null);
     const rippleRef = React.useRef(null);
-    React.useLayoutEffect(() => {
-      if (hasFocus) {
-        // const input = buttonElementRef.current.querySelector('input');
-        // input?.focus();
-      } else if (rippleRef.current) {
-        rippleRef.current.stop({});
-      }
-    }, [hasFocus]);
+   
     return (
       <div style={{ width: '50px' }}>
         {value ?? ''}

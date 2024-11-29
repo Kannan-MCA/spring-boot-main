@@ -1,0 +1,14 @@
+.parent-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+.page-header {
+    text-align: left;
+    justify-content: center;
+    height: 20vh;
+    background-color: #1976D2;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    color: white;
+}

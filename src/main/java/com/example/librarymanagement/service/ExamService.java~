@@ -1,0 +1,33 @@
+package com.example.librarymanagement.service;
+
+import com.example.librarymanagement.modal.Exam;
+import com.example.librarymanagement.modal.Student;
+import com.example.librarymanagement.repository.ExamRepository;
+import com.example.librarymanagement.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class ExamService {
+    @Autowired
+    private ExamRepository examRepository;
+    @Autowired private StudentRepository studentRepository;
+    public Exam createExam(Exam exam) {
+        return examRepository.save(exam);
+    } public void generateExamLinks(Exam exam, List<Student> students,
+                                    long durationInMinutes) {
+        long currentTime = System.currentTimeMillis();
+        long expirationTime = currentTime + durationInMinutes * 60 * 1000;
+        for (Student student : students) {
+            String token = UUID.randomUUID().toString();
+            String authKey = UUID.randomUUID().toString();
+            String examLink = "http://localhost:8080/exam/" + exam.getId() + "/" + token + "?authKey=" + authKey;
+            student.setExamLink(examLink);
+            student.setAuthKey(authKey);
+            student.setExpirationTimestamp(expirationTime); // Set expiration timestamp studentRepository.save(student); } }
+        }
+    }
+}

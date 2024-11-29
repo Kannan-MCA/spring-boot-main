@@ -1,0 +1,5 @@
+package com.example.librarymanagement.modal;
+
+public class Exam extends BaseEntity{
+
+}

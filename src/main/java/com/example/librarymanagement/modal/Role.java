@@ -5,10 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,7 +24,13 @@ import lombok.ToString;
 public class Role extends BaseEntity {
 	@Column(name = "role_name")
 	private String role_name;
+	@OneToOne
 	@JsonIgnore
+	private User user;
 	@ManyToMany(mappedBy = "roles")
-	private Set<Department> departments = new HashSet<Department>();
+	@JsonIgnore
+	private Set<User> users = new HashSet<>();
+
+	@OneToMany
+	private Set<Department> departments = new HashSet<>();
 }

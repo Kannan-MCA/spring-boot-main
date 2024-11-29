@@ -1,0 +1,27 @@
+package com.example.librarymanagement.controller;
+import com.example.librarymanagement.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+
+@RestController
+@RequestMapping("/api")
+public class QuestionController {
+    @Autowired
+private QuestionService questionService;
+    @PostMapping("/upload-questions") public ResponseEntity<String>
+    uploadQuestions(@RequestParam("file") MultipartFile file)
+    {
+
+        questionService.saveQuestionsFromCsv(file);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Questions uploaded successfully.");
+    }
+}

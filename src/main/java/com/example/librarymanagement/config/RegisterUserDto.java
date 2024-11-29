@@ -1,5 +1,11 @@
 package com.example.librarymanagement.config;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class RegisterUserDto {
 	private String email;
 
@@ -7,27 +13,8 @@ public class RegisterUserDto {
 
 	private String fullName;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	private String confirmPassword;
 
-	public String getEmail() {
-		return this.email;
-	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void detFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public String getFullName() {
-		return this.fullName;
-	}
 }

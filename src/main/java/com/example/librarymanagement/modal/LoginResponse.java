@@ -5,6 +5,31 @@ public class LoginResponse {
 
 	private long expiresIn;
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	private User user;
+	private Role role;
+
+	private String department;
+
+
+
+	public Role getRole() {
+		return this.role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+
+
 	public String getToken() {
 		return token;
 	}

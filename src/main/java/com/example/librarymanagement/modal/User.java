@@ -2,18 +2,19 @@ package com.example.librarymanagement.modal;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
+@Getter
+@Setter
 @Table(name = "users")
 @Entity
 public class User extends BaseEntity implements UserDetails {
-
 	@Column(nullable = false)
 	private String fullName;
 
@@ -23,6 +24,7 @@ public class User extends BaseEntity implements UserDetails {
 	@Column(nullable = false)
 	private String password;
 
+	@ManyToMany @JoinTable( name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id") ) private Set<Role> roles;
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}

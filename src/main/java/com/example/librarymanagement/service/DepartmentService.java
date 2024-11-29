@@ -26,18 +26,19 @@ public class DepartmentService {
 	}
 
 	public Department updateDepartment(Department departmentIn) {
-		Optional<Department> department = departmentRepository.findById(departmentIn.getId());
+		Optional<Department> existingDepartment = departmentRepository.findById(departmentIn.getId());
 
-		if (department.isPresent()) {
-			department.get().setDepartmentName(departmentIn.getDepartmentName());
+		if (existingDepartment.isPresent()) {
+			Department updatedDepartment = existingDepartment.get();
+			updatedDepartment.setDepartmentName(departmentIn.getDepartmentName());
+			return departmentRepository.save(updatedDepartment);
 		}
 
-		return departmentRepository.save(department.get());
+		return null;
 	}
 
-	public void deleteDepartment(Department department) {
-
-		departmentRepository.deleteById(department.getId());
+	public void deleteDepartment(Department departmentToDelete) {
+		departmentRepository.deleteById(departmentToDelete.getId());
 	}
 
 	public List<Department> getAll() {
@@ -45,14 +46,13 @@ public class DepartmentService {
 	}
 
 	public void assignDepartmentToRole(Integer roleId, Integer departmentId) {
-		Set<Role> roleSet = new HashSet<Role>();
+		Role role = roleRepository.findById(roleId).orElseThrow();
+		Department department = departmentRepository.findById(departmentId).orElseThrow();
 
-		Role role = roleRepository.findById(roleId).get();
-		roleSet.add(role);
-
-		Department department = departmentRepository.findById(departmentId).get();
-		department.setRoles(roleSet);
+		department.getRoles().add(role);
 		departmentRepository.save(department);
 	}
+
+	// Clean up was done by standardizing variable names, removing debugging statements, and improving readability by reducing the number of lines.
 
 }
