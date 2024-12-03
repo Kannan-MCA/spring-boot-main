@@ -3,12 +3,17 @@
     flex-direction: row;
     margin-top: 100px;
 }
-.page-header {
+.student-page-header {
     text-align: left;
     justify-content: center;
-    height: 20vh;
-    background-color: #1976D2;
+    height: 40vh;
+    background-color: #BDBDBD;
     margin-top: 10vh;
     margin-bottom: 5vh;
     color: white;
+    background-image: url("./../../image/student.png");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 100px;
 }

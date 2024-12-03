@@ -26,9 +26,8 @@ public class Department extends BaseEntity {
 	@Column(name = "department_name")
 	private String departmentName;
 
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
+	@Column(name = "description")
+	private String description;
 
 	@ManyToMany
 	@JoinTable(name = "department_role", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

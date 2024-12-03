@@ -1,0 +1,20 @@
+.parent-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    
+}
+.exam-page-header {
+    text-align: left;
+    justify-content: center;
+    height: 40vh;
+    background-color: #BDBDBD;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    color: white;
+    background-image: url("./../../image/exam.png");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 100px;
+}

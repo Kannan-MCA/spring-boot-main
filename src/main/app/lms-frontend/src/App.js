@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import { AuthProvider } from './context/AuthContext';
-import Dashboard from './components/Dashboard';
-import UploadQuestions from './components/UploadQuestions';
-import Exam from './components/Exam';
+import Dashboard from './components/dashboard/Dashboard';
+import UploadQuestions from './components/qustion/UploadQuestions';
+import ExamComponent from './components/exam/ExamComponent';
 import StudentDashboardComponent from './components/student/StudentDashboardComponent';
 import StaffDashboardComponent from './components/staff/StaffDashboardComponent';
 import DepartmentDashboardComponent from './components/department/DepartmentDashboardComponent';
@@ -26,10 +26,8 @@ function App() {
             <Route path="/students" element={<StudentDashboardComponent />} />
             <Route path="/employee" element={<StaffDashboardComponent />} />
             <Route path="/departments" element={<DepartmentDashboardComponent />} />
-            <Route path='/UplodeQuestions' element={<UploadQuestions/>} />
-
-
-            <Route path="/exam" element={<Exam />} />
+            <Route path='/UplodeQuestions' element={<UploadQuestions/>} />\
+            <Route path="/Exam" element={<ExamComponent />} />
 
             {/* 
             <Route element={<PrivateRoutes />}>

@@ -1,0 +1,40 @@
+.parent-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+}
+.dashboard-header{
+  text-align: center;
+    justify-content: center;
+    height: 85vh;
+    background-color: #BDBDBD;
+    margin-top: 10vh;
+    color: white;
+    background-image: url("./../../image/dashboard.png");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    align-content: center;
+}
+.text-ovrlay-backdrop{
+  position: absolute;
+  top: 15vh;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(25px);
+}
+.card-Row{
+display: flex;
+justify-content: space-evenly;
+margin-top: 27vh;
+
+}
+.Score-Board{
+  border:1px solid #FFFF;
+  backdrop-filter: blur(25px);
+  border-radius: 5px;
+  width: 48%;
+  padding: 1px;
+  height: 45vh;
+
+}

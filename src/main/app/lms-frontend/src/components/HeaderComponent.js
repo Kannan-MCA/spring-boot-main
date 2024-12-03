@@ -53,7 +53,7 @@ export default function Header() {
   const drawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerClose}>
       <List>
-        {['Home','Departments', 'Employee','Students','UplodeQuestions'].map((text, index) => (
+        {['Home','Departments', 'Employee','Students','UplodeQuestions', 'Exam'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
               onClick={(event) => {

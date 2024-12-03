@@ -1,0 +1,25 @@
+.qustion-page-header {
+    text-align: left;
+    justify-content: center;
+    height: 40vh;
+    background-color: #BDBDBD;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    color: white;
+    background-image: url("./../../image/qustion.png");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 100px;
+}
+button{
+    all: unset;
+    border: 1px solid #FFFFFF;
+    padding: 5px;
+}
+input{
+    all: unset;
+    border: 1px solid #FFFFFF;
+    padding: 5px;
+}
+
