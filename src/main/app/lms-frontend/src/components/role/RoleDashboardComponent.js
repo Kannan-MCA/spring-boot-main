@@ -4,7 +4,7 @@ import { ReactTabulator } from 'react-tabulator';
 import './DepartmentDashboardComponent.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import AddDepartmentModal from './AddDepartmentModal';
+import AddRoleModal from './AddRoleModal';
 
 const DepartmentDashboardComponent = () => {
     const initialData = [];
@@ -27,8 +27,8 @@ const DepartmentDashboardComponent = () => {
     }
 
     const columns = [
-        { title: 'Si.NO', field: 'id' },
-        { title: 'Department Name', field: 'departmentName' },
+        { title: 'R.NO', field: 'id' },
+        { title: 'Name', field: 'departmentName' },
         { title: 'Discription', field: 'description' },
     ];  
 
@@ -46,16 +46,16 @@ const DepartmentDashboardComponent = () => {
     }, []);
 
     const handleRowClick = (e, row) => {
-        e.preventDefault();
         console.log(`Row ${JSON.stringify(row.getData())} was clicked`);
+        setSelectedDepartments(row.getData());
         openModal();
     };
     return (
         <div className="department-dashboard">
-            <AddDepartmentModal
+            <AddRoleModal
                 isOpen={modalOpen}
                 onClose={closeModal}
-                onSave={saveDepartment}
+                onSave={save}
             />
             <div className="page-header">
                 <h1>Department</h1>

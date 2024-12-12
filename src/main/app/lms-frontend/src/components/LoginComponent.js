@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useAuth, logout } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 import './../Style/login.css';
 
 const Login = () => {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const { login: handleLogin } = useAuth();
 
     const handleEmailChange = (event) => {
         const value = event.target.value.trim();
@@ -32,8 +35,10 @@ const Login = () => {
 
         if (credentials.email && credentials.password) {
             try {
-                await handleLogin(credentials);
-                window.location.href = '/home';
+
+                await login(credentials);
+                navigate('/home');
+                //window.location.href = '/home';
             } catch (error) {
                 setEmailError('Invalid email or password');
             }

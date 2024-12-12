@@ -22,61 +22,43 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useAuth } from '../context/AuthContext';
+
 export default function Header() {
-  const { logout } = useAuth();
-  const token = localStorage.getItem('token');
+
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  
   const location = useLocation();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [menuAnchor, setMenuAnchor] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
 
   useEffect(() => {
-    if (token && location.pathname === '/') {
+    if (isAuthenticated && location.pathname === '/') {
       navigate('/home');
+    } else if (!isAuthenticated && location.pathname !== '/') {
+      navigate('/');
     }
-  }, [token]);
+  }, [isAuthenticated, location.pathname, navigate]);
 
-  const handleDrawerOpen = () => setDrawerOpen(true);
-  const handleDrawerClose = () => setDrawerOpen(false);
+  const openDrawer = () => setIsDrawerOpen(true);
+  const closeDrawer = () => setIsDrawerOpen(false);
 
-  const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
-  const handleMenuClose = () => setAnchorEl(null);
+  const openMenu = (event) => setMenuAnchor(event.currentTarget);
+  const closeMenu = () => setMenuAnchor(null);
 
   const handleLogout = () => {
     logout();
     navigate(0);
-    handleMenuOpen();
+    closeMenu();
+  };
 
-
-  }
-
-  const drawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerClose}>
-      <List>
-        {['Home','Departments', 'Employee','Students','UplodeQuestions', 'Exam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton
-              onClick={(event) => {
-                event.preventDefault();
-                navigate(`/${event.target.textContent}`);
-              }}
-            >
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
+  const drawerItems = ['Home', 'Departments', 'Employee', 'Students', 'UploadQuestions', 'Exam'];
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          {token && (
+          {isAuthenticated && (
             <IconButton
               size="large"
               edge="start"
@@ -84,67 +66,71 @@ export default function Header() {
               aria-label="menu"
               aria-controls="menu-drawer"
               aria-haspopup="true"
-              onClick={handleDrawerOpen}
+              onClick={openDrawer}
               sx={{ mr: 2 }}
             >
               <MenuIcon />
             </IconButton>
           )}
-
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <img src={logo} className="logo" />
+            <img src={logo} alt="Logo" className="logo" />
           </Typography>
-
-
-          {token && (<div>
-
-
-            
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenuOpen}
-              color="inherit"
-            >
-              <Avatar>T</Avatar>
-            </IconButton>
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-            >
-              <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-              <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-              <MenuItem onClick={handleLogout}>Sign-Out</MenuItem>
-            </Menu>
-          
-
-
-
-          </div>)}
-
-          
-
-
-
+          {isAuthenticated && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={openMenu}
+                color="inherit"
+              >
+                <Avatar>{user.user.name}</Avatar>
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={menuAnchor}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(menuAnchor)}
+                onClose={closeMenu}
+              >
+                <MenuItem onClick={closeMenu}>Profile</MenuItem>
+                <MenuItem onClick={closeMenu}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Sign-Out</MenuItem>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
+      <Drawer open={isDrawerOpen} onClose={closeDrawer}>
+        <Box sx={{ width: 250 }} role="presentation" onClick={closeDrawer}>
+          <List>
+            {drawerItems.map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton
+                  onClick={(event) => {
+                    event.preventDefault();
+                    navigate(`/${text}`);
+                  }}
+                >
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
 
-      <Drawer open={drawerOpen} onClose={handleDrawerClose}>
-        {drawerList}
       </Drawer>
     </Box>
   );
