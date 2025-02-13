@@ -12,6 +12,9 @@ import java.util.Date;
 @Setter
 @Entity
 public class VerificationToken extends BaseEntity {
+
+
+
     private String token;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)

@@ -3,12 +3,7 @@ package com.example.librarymanagement.modal;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +24,6 @@ public class Department extends BaseEntity {
 	@Column(name = "description")
 	private String description;
 
-	@ManyToMany
-	@JoinTable(name = "department_role", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	private Set<Role> roles = new HashSet<>();
 }

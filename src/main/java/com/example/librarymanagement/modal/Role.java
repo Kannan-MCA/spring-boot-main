@@ -24,13 +24,8 @@ import lombok.ToString;
 public class Role extends BaseEntity {
 	@Column(name = "role_name")
 	private String role_name;
-	@OneToOne
-	@JsonIgnore
-	private User user;
-	@ManyToMany(mappedBy = "roles")
-	@JsonIgnore
-	private Set<User> users = new HashSet<>();
 
-	@OneToMany
-	private Set<Department> departments = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
 }

@@ -33,6 +33,7 @@ public class RoleService {
 		Role role = roleRepository.findById(roleId).get();
 		Department department = departmentRepository.findById(departmentId).get();
 		departmentSet.add(department);
+		role.setDepartments(departmentSet);
 		roleRepository.save(role);
 
 	}
