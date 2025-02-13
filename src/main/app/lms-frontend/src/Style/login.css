@@ -1,12 +1,12 @@
 .mainContainer {
   position: absolute;
-  top: 120px;
+  top: 65px;
   background-color: #E7E7E7;
   border-top-left-radius: 130px;
   border-top-right-radius: 180px;
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 150px;
-  height: 60vh;
+  height: 70vh;
   min-width: 480px;
   left: -10px;
   overflow: hidden;

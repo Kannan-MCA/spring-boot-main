@@ -38,7 +38,6 @@ const Login = () => {
 
                 await login(credentials);
                 navigate('/home');
-                //window.location.href = '/home';
             } catch (error) {
                 setEmailError('Invalid email or password');
             }
@@ -83,7 +82,16 @@ const Login = () => {
                     />
                 </div>
                 <br />
-                <label type="button" value="for sign-up" />
+                <div className="inputContainer">
+                    <input
+                        id="submit"
+                        className="inputButton"
+                        type="button"
+                        onClick={() => navigate('/register')}
+                        value="To Register"
+                    />
+                </div>
+
             </div>
             <div className="imag-container" />
         </div>

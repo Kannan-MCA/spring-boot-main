@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import logo from './../image/logo.png';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import "./../App.css";
+import "./header.css";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Avatar } from '@mui/material';
 
@@ -53,7 +53,7 @@ export default function Header() {
     closeMenu();
   };
 
-  const drawerItems = ['Home', 'Departments', 'Employee', 'Students', 'UploadQuestions', 'Exam'];
+  const drawerItems = ['Home', 'Departments', 'Employee', 'Students', 'UploadQuestions', 'Exam', 'Editor'];
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -85,7 +85,7 @@ export default function Header() {
                 onClick={openMenu}
                 color="inherit"
               >
-                <Avatar>{user.user.name}</Avatar>
+                <Avatar>{user.fullName[0]}</Avatar>
               </IconButton>
               <Menu
                 id="menu-appbar"

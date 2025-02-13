@@ -31,24 +31,7 @@ const Dashboard = () => {
                     <h3>Department</h3> <h4>Of</h4> <h1>Technical Training </h1>
                     <h6>The Real Phase Of Education</h6>
                 </div>
-                <div className='card-Row'>
-                <div className='Score-Board'>
-                <div className='card-header'> Today`s Exam</div>
-                <div className='exam-detail'>
-                <ReactTabulator
-                    columns={columns}
-                    data={data}
-                    options={{}}
-                    events={{ rowClick: handleRowClick }}
-                />
-                </div>
-                </div>
-                <div className='Score-Board'>
-                    <div className='card-header'> </div>
-                </div>
-
-
-            </div>
+                
             </div>
             
         </div>

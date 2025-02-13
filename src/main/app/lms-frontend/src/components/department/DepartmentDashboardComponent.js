@@ -5,8 +5,10 @@ import './DepartmentDashboardComponent.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import AddDepartmentModal from './AddDepartmentModal';
+import { useAuth } from './../../context/AuthContext';
 
 const DepartmentDashboardComponent = () => {
+    const { token } = useAuth();
     const initialData = [];
     const [departments, setDepartments] = useState(initialData);
     const [selectedDepartment, setSelectedDepartments] = useState(departments);
@@ -20,7 +22,7 @@ const DepartmentDashboardComponent = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                "authorization": "Bearer " + localStorage.getItem('token')
+                "authorization": "Bearer " + token
             },
             body: JSON.stringify(newDepartment)
         })
@@ -38,7 +40,7 @@ const DepartmentDashboardComponent = () => {
         fetch('http://localhost:8090/meta/department', {
             method: 'GET',
             headers: {
-                "authorization": "Bearer " + localStorage.getItem('token')
+                "authorization": "Bearer " + token
             }
         })
             .then((response) => response.json())
@@ -47,7 +49,7 @@ const DepartmentDashboardComponent = () => {
 
     const handleRowClick = (e, row) => {
         e.preventDefault();
-        console.log(`Row ${JSON.stringify(row.getData())} was clicked`);
+        setSelectedDepartments(row.getData());
         openModal();
     };
     return (
@@ -56,6 +58,7 @@ const DepartmentDashboardComponent = () => {
                 isOpen={modalOpen}
                 onClose={closeModal}
                 onSave={saveDepartment}
+                selectedDepartment={selectedDepartment}
             />
             <div className="page-header">
                 <h1>Department</h1>

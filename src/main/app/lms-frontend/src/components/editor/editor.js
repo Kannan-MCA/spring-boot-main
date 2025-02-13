@@ -1,10 +1,10 @@
 import axios from "axios";
-import "./App.css";
+import "./editor.css";
 import stubs from "./stubs";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
-function App() {
+function CodeEditor() {
   const [codeText, setCodeText] = useState("");
   const [outputText, setOutputText] = useState("");
   const [language, setLanguage] = useState("cpp");
@@ -32,7 +32,7 @@ function App() {
       setOutputText("");
       setJobId(null);
       setJobDetails(null);
-      const { data } = await axios.post("http://localhost:5000/run", payload);
+      const { data } = await axios.post("http://localhost:8090/run", payload);
 
       if (data.jobId) {
         setJobId(data.jobId);
@@ -116,8 +116,12 @@ function App() {
             }
           }}
         >
+          <option value="c">C</option>
           <option value="cpp">C++</option>
+          <option value="java">Java</option>
           <option value="py">Python</option>
+          <option value="js">JavaScript</option>
+
         </select>
       </div>
       <br />
@@ -141,4 +145,4 @@ function App() {
   );
 }
 
-export default App;
+export default CodeEditor;

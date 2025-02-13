@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Box, Button, TextField, Typography } from '@mui/material';
 
-const AddDepartmentModal = ({ isOpen, onClose, onSave }) => {
-  const [department, setDepartment] = useState({
-    departmentName: '',
-    description: '',
-  });
+const AddDepartmentModal = ({ isOpen, onClose, onSave, selectedDepartment }) => {
+  const [department, setDepartment] = useState(selectedDepartment || { departmentName: '', description: '' });
 
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    setDepartment((prevState) => ({
-      ...prevState,
+    setDepartment((prevDepartment) => ({
+      ...prevDepartment,
       [name]: value,
     }));
   };
@@ -21,7 +18,6 @@ const AddDepartmentModal = ({ isOpen, onClose, onSave }) => {
     setDepartment({ departmentName: '', description: '' });
     onClose();
   };
-
 
   return (
     <Modal open={isOpen} onClose={onClose}>
@@ -41,13 +37,13 @@ const AddDepartmentModal = ({ isOpen, onClose, onSave }) => {
           Add Department
         </Typography>
         <TextField
-          label="Name"
+          label="Department Name"
           variant="outlined"
           fullWidth
           margin="normal"
           name="departmentName"
           value={department.departmentName}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <TextField
           label="Description"
@@ -56,7 +52,7 @@ const AddDepartmentModal = ({ isOpen, onClose, onSave }) => {
           margin="normal"
           name="description"
           value={department.description}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <Box mt={2}>
           <Button

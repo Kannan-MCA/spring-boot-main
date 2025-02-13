@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ExamPage.css';
-import 'react-tabulator/lib/styles.css'; // required styles
-import 'react-tabulator/lib/css/tabulator.min.css'; // theme
+import 'react-tabulator/lib/styles.css';
+import 'react-tabulator/lib/css/tabulator.min.css'; 
 import { ReactTabulator } from 'react-tabulator';
 import AddExamModal from './AddExamModal';
 const ExamComponent = () => {
@@ -10,6 +10,9 @@ const ExamComponent = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+  const openChallange =()=>{
+    navigator.navigate()
+  }
   const saveDepartment = (newDepartment) => setDepartments([...departments, newDepartment]);
 
   const columns = [
@@ -32,6 +35,7 @@ const handleRowClick = (e, row) => {
       <div className="exam-page-header">
         <h1>Take Your Challange</h1>
         <button onClick={openModal}>Create New Exam</button>
+        <button onClick={openChallange}>Code Challange</button>
 
         <AddExamModal
                 isOpen={modalOpen}
