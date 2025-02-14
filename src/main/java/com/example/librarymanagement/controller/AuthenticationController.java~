@@ -1,6 +1,5 @@
 package com.example.librarymanagement.controller;
 
-import com.example.librarymanagement.modal.VerificationToken;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

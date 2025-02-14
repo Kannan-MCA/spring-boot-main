@@ -1,3 +1,8 @@
+#root {
+    margin: 0 auto; 
+    text-align: center;
+    width :100% !important;   
+  }
 .qustion-page-header {
     text-align: left;
     justify-content: center;

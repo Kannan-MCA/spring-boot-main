@@ -3,7 +3,7 @@ import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { login } from '../service/loginService';
 import './../Style/login.css';
-const baseURL = 'http://192.168.0.102:8080';
+const baseURL = 'http://127.0.0.1:8090/auth';
 const Register = () => {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')

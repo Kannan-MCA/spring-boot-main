@@ -77,3 +77,9 @@
   color: #FFFFFF;
 
 }
+
+.input-link {
+  all: unset;
+  color: #0155B7;
+  text-decoration: none;
+}

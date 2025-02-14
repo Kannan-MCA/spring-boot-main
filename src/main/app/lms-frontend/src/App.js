@@ -23,7 +23,9 @@ function App() {
           <Routes>
             
             <Route path="/" element={<LoginComponent />} />
+
             <Route path="/register" element={<Register />} />
+
             <Route path="/home" element={<Dashboard />} />
             <Route path="/students" element={<StudentDashboardComponent />} />
             <Route path="/employees" element={<StaffDashboardComponent />} />
@@ -33,6 +35,8 @@ function App() {
             <Route path="/editor" element={<CodeEditor />} />
 
           </Routes>
+
+
           <FooterComponent />
 
           </AuthProvider>

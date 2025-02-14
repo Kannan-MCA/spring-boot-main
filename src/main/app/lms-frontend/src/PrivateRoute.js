@@ -10,6 +10,8 @@ const PrivateRoute = ({ component: Component, path, requiredRole, ...rest }) => 
     return <Route path={path} element={<Component />} {...rest} />;
   }
 
+  
+
   return (
     <Route
       path={path}

@@ -21,8 +21,8 @@ import lombok.ToString;
 @MappedSuperclass
 public class BaseEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false)
 	private Integer id;
 
 	public Integer getId() {

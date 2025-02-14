@@ -85,7 +85,7 @@ const Login = () => {
                 <div className="inputContainer">
                     <input
                         id="submit"
-                        className="inputButton"
+                        className="input-link"
                         type="button"
                         onClick={() => navigate('/register')}
                         value="To Register"
