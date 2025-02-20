@@ -1,0 +1,25 @@
+.student-page {
+    margin-top: 50px;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.card-container {
+    padding: 25px;
+}
+
+.card {
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.card-header {
+    background-color: #1976d2b4;
+    color: #FFFFFF;
+    border-bottom: 1px solid #000000;
+}

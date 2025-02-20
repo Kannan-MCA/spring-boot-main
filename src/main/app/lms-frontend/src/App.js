@@ -12,37 +12,38 @@ import StaffDashboardComponent from './components/staff/StaffDashboardComponent'
 import DepartmentDashboardComponent from './components/department/DepartmentDashboardComponent';
 import CodeEditor from './components/editor/editor';
 
+import StudentPage from './components/StudentDashboard/StudentPage';
+
 import LoginComponent from './components/LoginComponent';
 import Register from './components/RegisterComponent';
-import PrivateRoutes from './PrivateRoute';
 function App() {
   return (
-        <BrowserRouter>
-          <AuthProvider>
-          <HeaderComponent />
-          <Routes>
-            
-            <Route path="/" element={<LoginComponent />} />
+    <BrowserRouter>
+      <AuthProvider>
+        <HeaderComponent />
+        <Routes>
 
-            <Route path="/register" element={<Register />} />
+          <Route path="/" element={<LoginComponent />} />
+          <Route path="/register" element={<Register />} />
 
-            <Route path="/home" element={<Dashboard />} />
-            <Route path="/students" element={<StudentDashboardComponent />} />
-            <Route path="/employees" element={<StaffDashboardComponent />} />
-            <Route path="/departments" element={<DepartmentDashboardComponent />} />
-            <Route path="/upload-questions" element={<UploadQuestions />} />
-            <Route path="/exam" element={<ExamComponent />} />
-            <Route path="/editor" element={<CodeEditor />} />
+          <Route path="/home" element={<Dashboard />} />
+          <Route path="/students" element={<StudentDashboardComponent />} />
+          <Route path="/employees" element={<StaffDashboardComponent />} />
+          <Route path="/departments" element={<DepartmentDashboardComponent />} />
+          <Route path="/uploadquestions" element={<UploadQuestions />} />
+          <Route path="/exam" element={<ExamComponent />} />
+          <Route path="/editor" element={<CodeEditor />} />
+          <Route path="/StudentPage" element={<StudentPage />} />"
 
-          </Routes>
+        </Routes>
 
 
-          <FooterComponent />
+        <FooterComponent />
 
-          </AuthProvider>
+      </AuthProvider>
 
-        </BrowserRouter>
-      );
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -4,6 +4,7 @@ import 'react-tabulator/lib/styles.css';
 import 'react-tabulator/lib/css/tabulator.min.css';
 import { ReactTabulator } from 'react-tabulator';
 import UploadQustionsModal from './UploadQustionsModal';
+import { BASE_URL } from '../../util/util';
 
 const UploadQuestions = () => {
 
@@ -43,7 +44,7 @@ const handleRowClick = (e, row) => {
     const formData = new FormData();
     formData.append('file', selectedFile);
 
-    const response = await fetch('http://localhost:8090/api/upload-questions', {
+    const response = await fetch(BASE_URL+'/api/upload-questions', {
       method: 'POST',
       body: formData,
     });

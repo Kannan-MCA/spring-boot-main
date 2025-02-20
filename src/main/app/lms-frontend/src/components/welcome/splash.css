@@ -1,10 +1,12 @@
-.css-hyum1k-MuiToolbar-root {
-    min-height: 35px !important;
+.splash-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    background-color: #E7E7E7;
 }
-.css-11b3ww9-MuiPaper-root-MuiAppBar-root{
-    min-height: 35px !important;
-}
-
 .login-button{
     padding: 10px 20px;
     background-color: #0257b8;
@@ -22,6 +24,14 @@
 }
 .register-link-button:hover{
     border-radius: 5px;
-    border: 1px solid #FFFF;
+    border: 1px solid #FFFFFF;
     margin-left: 2px;
 }
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+

@@ -1,7 +1,9 @@
+import { upload } from '@testing-library/user-event/dist/upload';
 import React from 'react';
 import * as XLSX from 'xlsx';
+import { BASE_URL } from './util';
 
-const FileInput=()=>{
+function FileInput({ onFileUpload }) {
   const [data, setData] = React.useState(null);
 
   const handleFileUpload = (e) => {
@@ -16,6 +18,7 @@ const FileInput=()=>{
 
       setData(sheetData);
     };
+    
 
     reader.readAsBinaryString(file);
   };
@@ -23,14 +26,28 @@ const FileInput=()=>{
   return (
     <div>
       <input type="file" onChange={handleFileUpload} />
-      {data && (
-        <div>
-          <h2>Imported Data:</h2>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
-      )}
     </div>
   );
 }
+
+
+saveData=(data)=>{
+
+  fetch(BASE_URL+'/upload-questions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+
 
 export default FileInput;

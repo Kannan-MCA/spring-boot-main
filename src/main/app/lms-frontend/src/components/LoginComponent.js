@@ -80,6 +80,8 @@ const Login = () => {
                         onClick={handleSubmit}
                         value="Log in"
                     />
+                    <label className="errorLabel" />
+
                 </div>
                 <br />
                 <div className="inputContainer">
@@ -88,7 +90,7 @@ const Login = () => {
                         className="input-link"
                         type="button"
                         onClick={() => navigate('/register')}
-                        value="To Register"
+                        value="forget password?"
                     />
                 </div>
 

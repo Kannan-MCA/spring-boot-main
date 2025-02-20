@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Box, Button, TextField, Typography } from '@mui/material';
+import FileInput from './../../util/FileInput';
 
 const UploadQustionsModal = ({ isOpen, onClose, onSave }) => {
   const [department, setDepartment] = useState({
@@ -7,14 +8,7 @@ const UploadQustionsModal = ({ isOpen, onClose, onSave }) => {
     description: '',
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
 
-    setDepartment((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = () => {
     onSave(department);
@@ -37,34 +31,19 @@ const UploadQustionsModal = ({ isOpen, onClose, onSave }) => {
         }}
       >
         <Typography variant="h6" component="h2">
-          Add Department
+          Add Qustions
         </Typography>
-        <TextField
-          label="Name"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="name"
-          value={department.name}
-          onChange={handleChange}
-        />
-        <TextField
-          label="Description"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="description"
-          value={department.description}
-          onChange={handleChange}
-        />
-        
+
+
+        <FileInput />
+
         <Box mt={2}>
           <Button
             variant="outlined"
             color="primary"
             onClick={handleSubmit}
           >
-            Save Changes
+            Upload
           </Button>
           <Button
             variant="outlined"

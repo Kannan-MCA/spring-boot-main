@@ -24,6 +24,27 @@ const StaffDashboardComponent = () => {
         { rno: 3, name: 'Name-3', department: 'ECE' },
     ];
 
+
+
+    const saveStaff = (newStaff) =>{
+        setDepartments([...departments, newStaff]);
+        fetch('http://localhost:8090/meta/employee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                "authorization": "Bearer " + token
+            },
+            body: JSON.stringify(newDepartment)
+        })
+    }
+
+
+
+
+
+
+
     const handleRowClick = (e, row) => {
         console.log(`Row ${row.getData().questionId} was clicked`);
     };

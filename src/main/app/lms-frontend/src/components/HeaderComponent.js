@@ -53,7 +53,7 @@ export default function Header() {
     closeMenu();
   };
 
-  const drawerItems = ['Home', 'Departments', 'Employee', 'Students', 'UploadQuestions', 'Exam', 'Editor'];
+  const drawerItems = ['Home', 'Departments', 'employees', 'Students', 'uploadquestions'];
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -108,6 +108,13 @@ export default function Header() {
               </Menu>
             </div>
           )}
+          {!isAuthenticated && (
+            <div>
+              <button className="register-link-button" onClick={() => navigate('/login')}>Login</button>
+              <button className="register-link-button" onClick={() => navigate('/register')}>Sign-Up</button>
+            </div>
+          )}
+
         </Toolbar>
       </AppBar>
       <Drawer open={isDrawerOpen} onClose={closeDrawer}>

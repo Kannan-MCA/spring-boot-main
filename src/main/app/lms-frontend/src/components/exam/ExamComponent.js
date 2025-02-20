@@ -11,7 +11,7 @@ const ExamComponent = () => {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
   const openChallange =()=>{
-    navigator.navigate()
+  navigation.navigate('/editor');
   }
   const saveDepartment = (newDepartment) => setDepartments([...departments, newDepartment]);
 

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import AddDepartmentModal from './AddDepartmentModal';
 import { useAuth } from './../../context/AuthContext';
+import { BASE_URL } from '../../util/util';
 
 const DepartmentDashboardComponent = () => {
     const { token } = useAuth();
@@ -17,7 +18,7 @@ const DepartmentDashboardComponent = () => {
     const closeModal = () => setModalOpen(false);
     const saveDepartment = (newDepartment) =>{
         setDepartments([...departments, newDepartment]);
-        fetch('http://localhost:8090/meta/department', {
+        fetch(BASE_URL +'/meta/department', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ const DepartmentDashboardComponent = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:8090/meta/department', {
+        fetch(BASE_URL+'/meta/department', {
             method: 'GET',
             headers: {
                 "authorization": "Bearer " + token

@@ -52,7 +52,7 @@ const Register = () => {
                 <div className="inputContainer">
                     <input
                         value={fullName}
-                        placeholder="Enter your fullname here"
+                        placeholder="Full Name"
                         onChange={(event) => setFullName(event.target.value)}
                         className="inputBox"
                     />
@@ -64,7 +64,7 @@ const Register = () => {
                 <div className="inputContainer">
                     <input
                         value={email}
-                        placeholder="Enter your email here"
+                        placeholder="E - Mail"
                         onChange={(event) => setEmail(event.target.value)}
                         className="inputBox"
                     />
@@ -76,7 +76,8 @@ const Register = () => {
                 <div className="inputContainer">
                     <input
                         value={password}
-                        placeholder="Enter your password here"
+                        placeholder="Password"
+                        type="password"
                         onChange={(event) => setPassword(event.target.value)}
                         className="inputBox"
                     />

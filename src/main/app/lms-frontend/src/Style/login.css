@@ -1,4 +1,22 @@
+
+@keyframes appear {
+  from {
+    opacity: 0.8;
+    transform: translate(0, 0);  
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    transform: translate(10px,10px);
+  }
+
+}
+
 .mainContainer {
+  animation: appear  linear .5s;
+  animation-fill-mode: forwards;
+
+
   position: absolute;
   top: 65px;
   background-color: #E7E7E7;
@@ -13,6 +31,7 @@
 }
 .errorLabel{
   padding: 5px;
+  width: 170px;
   color: red;
   font-weight:lighter;
 }
