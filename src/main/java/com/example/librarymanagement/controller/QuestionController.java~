@@ -19,14 +19,9 @@ private QuestionService questionService;
     @PostMapping("/upload-questions") public ResponseEntity<String>
     uploadQuestions(@RequestParam("file") MultipartFile file)
     {
-        try {
 
-            questionService.saveQuestionsFromCsv(file);
+        questionService.saveQuestionsFromCsv(file);
 
-            return ResponseEntity.status(HttpStatus.OK).body("Questions uploaded successfully.");
-        } catch (IOException e)
-        {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload questions.");
-        }
+        return ResponseEntity.status(HttpStatus.OK).body("Questions uploaded successfully.");
     }
 }

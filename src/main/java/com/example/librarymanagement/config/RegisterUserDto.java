@@ -12,6 +12,13 @@ public class RegisterUserDto {
 
 	private String password;
 
+	private int roleId;
+
+	private String fullName;
+
+	private String confirmPassword;
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -44,10 +51,11 @@ public class RegisterUserDto {
 		this.confirmPassword = confirmPassword;
 	}
 
-	private String fullName;
+	public int getRoleId() {
+		return roleId;
+	}
 
-	private String confirmPassword;
-
-
-
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 }

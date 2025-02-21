@@ -1,8 +1,5 @@
 package com.example.librarymanagement.modal;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -12,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,4 +28,17 @@ public class Role extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private Department department;
+
+	@ManyToMany(mappedBy = "roles")
+	@JsonIgnore
+	private Set<User> users;
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
 }

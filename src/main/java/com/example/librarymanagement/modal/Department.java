@@ -3,6 +3,7 @@ package com.example.librarymanagement.modal;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,5 +26,6 @@ public class Department extends BaseEntity {
 	private String description;
 
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Role> roles = new HashSet<>();
 }

@@ -1,5 +1,9 @@
 package com.example.librarymanagement.controller;
 
+import com.example.librarymanagement.modal.Role;
+import com.example.librarymanagement.repository.RoleRepository;
+import com.example.librarymanagement.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +15,23 @@ import com.example.librarymanagement.service.AuthenticationService;
 import com.example.librarymanagement.service.JwtService;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
+
+
 	private final JwtService jwtService;
 
 	private final AuthenticationService authenticationService;
+
+	@Autowired
+	UserRepository userRepository;
+
+	@Autowired
+	RoleRepository roleRepository;
 
 	public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
 		this.jwtService = jwtService;
@@ -25,10 +39,17 @@ public class AuthenticationController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+	public ResponseEntity<String> register(@RequestBody RegisterUserDto registerUserDto) {
+		Role role = roleRepository.findById(registerUserDto.getRoleId())
+				.orElseThrow(() -> new RuntimeException("Role not found"));
 		User registeredUser = authenticationService.signup(registerUserDto);
+		Set <Role>  registeredRoles = new HashSet<Role>();
 
-		return ResponseEntity.ok(registeredUser);
+		registeredRoles.add(role);
+
+		registeredUser.setRoles(registeredRoles);
+		userRepository.save(registeredUser);
+		return ResponseEntity.ok("User registered successfully!");
 	}
 
 	@PostMapping("/login")

@@ -23,10 +23,10 @@ function App() {
         <HeaderComponent />
         <Routes>
 
-          <Route path="/" element={<LoginComponent />} />
+          <Route path="/login" element={<LoginComponent />} />
           <Route path="/register" element={<Register />} />
 
-          <Route path="/home" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/students" element={<StudentDashboardComponent />} />
           <Route path="/employees" element={<StaffDashboardComponent />} />
           <Route path="/departments" element={<DepartmentDashboardComponent />} />

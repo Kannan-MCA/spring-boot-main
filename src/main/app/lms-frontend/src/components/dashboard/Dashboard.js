@@ -30,6 +30,7 @@ const Dashboard = () => {
                 <div className="text-ovrlay-backdrop">
                     <h3>Department</h3> <h4>Of</h4> <h1>Technical Training </h1>
                     <h6>The Real Phase Of Education</h6>
+                   
                 </div>
                 
             </div>

@@ -15,8 +15,6 @@
 .mainContainer {
   animation: appear  linear .5s;
   animation-fill-mode: forwards;
-
-
   position: absolute;
   top: 65px;
   background-color: #E7E7E7;
@@ -89,6 +87,22 @@
   background-color: rgba(148, 189, 255, 0.151);
   padding-left: 8px;
   margin-left: 80px;
+}
+.inputButton-reg {
+  height: 48px;
+  width: 300px;
+  font-size: large;
+  border-radius: 8px;
+  border: 1px solid #0155B7;
+  background-color: rgba(148, 189, 255, 0.151);
+  padding-left: 8px;
+  margin-left: -80px;
+}
+
+.inputButton-reg:hover {
+  background-color: #0257b8;
+  color: #FFFFFF;
+
 }
 
 .inputButton:hover {

@@ -34,11 +34,7 @@ export default function Header() {
 
 
   useEffect(() => {
-    if (isAuthenticated && location.pathname === '/') {
-      navigate('/home');
-    } else if (!isAuthenticated && location.pathname !== '/') {
-      navigate('/');
-    }
+    
   }, [isAuthenticated, location.pathname, navigate]);
 
   const openDrawer = () => setIsDrawerOpen(true);

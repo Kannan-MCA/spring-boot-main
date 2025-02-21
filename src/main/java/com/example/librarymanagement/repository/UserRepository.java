@@ -8,4 +8,6 @@ import com.example.librarymanagement.modal.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 	Optional<User> findByEmail(String email);
+
+	boolean findByFullName(String fullName);
 }
