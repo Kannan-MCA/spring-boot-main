@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { json, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { login } from '../service/loginService';
 import './../Style/login.css';
+import { MenuItem, Select } from '@mui/material';
 const baseURL = 'http://127.0.0.1:8090/auth';
 const Register = () => {
     const [fullName, setFullName] = useState('')
@@ -42,7 +42,7 @@ const Register = () => {
 
     return (
         <div className="parent-container">
-            <div className="mainContainer">
+            <div className="mainContainer-reg">
                 <div className="titleContainer">
                     <div>Register</div>
                 </div>
@@ -85,10 +85,29 @@ const Register = () => {
                 </div>
 
                 <br />
+                <div className="inputContainer select">
+                    <Select
+                        className="inputBox"
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={10}
+                        label="Age"
+                        onChange={(event) => {
+
+                        }}
+                    >
+                        
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </div>
+
+                <br />
 
                 <div className="inputContainer">
                     <input
-                        className="inputButton"
+                        className="inputButton-reg"
                         type="button"
                         onClick={handleRegister}
                         value="Register"

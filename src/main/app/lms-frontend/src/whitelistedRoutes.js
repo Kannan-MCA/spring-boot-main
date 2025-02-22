@@ -1,1 +1,1 @@
-export const whitelistedRoutes = [ '/','/register'];
+export const whitelistedRoutes = [ '/login','/register'];

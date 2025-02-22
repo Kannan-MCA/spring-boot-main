@@ -27,15 +27,42 @@ export default function Header() {
 
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-  
+
   const location = useLocation();
   const [menuAnchor, setMenuAnchor] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  const [drawerItems, setDrawerItems] = useState([]);
 
   useEffect(() => {
     
+
+    if (isAuthenticated && user.roles[0].role_name === 'STUDENT') {
+      //navigate('/Students');
+      setDrawerItems(['StudentPage','exams','editor']);
+  
+    }
+  
+    if (isAuthenticated && user.roles[0].role_name === 'ADMIN') {
+      //navigate('/admindashboard');
+      setDrawerItems(['Home', 'Departments', 'employees', 'Students', 'uploadquestions']);
+  
+    }
+  
+    if (isAuthenticated && user.roles[0].role_name === 'ROLE_HOD') {
+      //navigate('/hoddashboard');
+      setDrawerItems(['Home', 'Departments', 'employees', 'Students', 'uploadquestions']);
+  
+    }
+  
+    if (isAuthenticated && user.roles[0].role_name === 'STAFF') {
+      navigate('/teacherdashboard');
+      setDrawerItems(['Home', 'Departments', 'employees', 'Students', 'uploadquestions']);
+  
+    }
+
   }, [isAuthenticated, location.pathname, navigate]);
+
 
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
@@ -49,14 +76,15 @@ export default function Header() {
     closeMenu();
   };
 
-  const drawerItems = ['Home', 'Departments', 'employees', 'Students', 'uploadquestions'];
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
           {isAuthenticated && (
             <IconButton
-              size="large"
+              size="small"
               edge="start"
               color="inherit"
               aria-label="menu"
@@ -74,7 +102,7 @@ export default function Header() {
           {isAuthenticated && (
             <div>
               <IconButton
-                size="large"
+                size="small"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
