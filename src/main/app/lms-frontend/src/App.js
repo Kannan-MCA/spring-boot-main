@@ -26,7 +26,7 @@ function App() {
 
           </Route>
           <Route element={<LoginComponent />} path="/login" />
-          <Route element={<editor />} path="/editor" />
+          <Route element={<CodeEditor />} path="/editor" />
 
 
           {/* 

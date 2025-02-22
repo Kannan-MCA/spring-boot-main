@@ -1,10 +1,13 @@
 package com.example.librarymanagement.modal;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "submissions")
-public class Submission extends  BaseEntity {
+public class Submission {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -24,4 +27,3 @@ public class Submission extends  BaseEntity {
 
     @Column(nullable = false)
     private boolean isSuccess;
-}

@@ -25,7 +25,7 @@ public class ProblemController {
     }
 
     @PutMapping("/{id}")
-    public Problem updateProblem(@PathVariable int id, @RequestBody Problem problem) {
+    public Problem updateProblem(@PathVariable Long id, @RequestBody Problem problem) {
         return problemService.updateProblem(id, problem);
     }
 

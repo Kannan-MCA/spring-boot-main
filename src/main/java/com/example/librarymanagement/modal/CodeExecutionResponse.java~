@@ -1,13 +1,12 @@
 package com.example.librarymanagement.modal;
 
-public class Judge0Response {
-
+public class CodeExecutionResponse {
     private String output;
     private String status;
     private String error;
 
     // Constructor
-    public Judge0Response(String output, String status, String error) {
+    public CodeExecutionResponse(String output, String status, String error) {
         this.output = output;
         this.status = status;
         this.error = error;

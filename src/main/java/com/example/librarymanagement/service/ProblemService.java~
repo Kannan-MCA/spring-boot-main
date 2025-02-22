@@ -3,6 +3,7 @@ package com.example.librarymanagement.service;
 import com.example.librarymanagement.modal.Problem;
 import com.example.librarymanagement.repository.ProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

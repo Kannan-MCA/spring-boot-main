@@ -1,0 +1,25 @@
+package com.example.librarymanagement.service;
+
+import com.example.librarymanagement.modal.CodeExecutionResponse;
+import com.example.librarymanagement.modal.Judge0Request;
+import com.example.librarymanagement.modal.Judge0Response;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CodeExecutionServices {
+    public CodeExecutionResponse executeCode(String code, String language) {
+        // Create a request to the Judge0 API
+        Judge0Request judge0Request = new Judge0Request(code, language);
+
+        // Call the Judge0 API and get the response
+        Judge0Response judge0Response = callJudge0Api(judge0Request);
+
+        // Return the execution response
+        return new CodeExecutionResponse(judge0Response.getOutput());
+    }
+
+    private Judge0Response callJudge0Api(Judge0Request request) {
+
+        return null;
+    }
+}
