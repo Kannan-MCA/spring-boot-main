@@ -12,6 +12,17 @@ function CodeEditor() {
   const [jobStatus, setJobStatus] = useState(null);
   const [jobDetails, setJobDetails] = useState(null);
   const [pollInterval, setPollInterval] = useState(null);
+  const [questionNo, setQustNo] = useState(0);
+
+  const [qustionText, setQustionText] = useState([
+    { id: "1", discription: "Revers a sorted array", tesctcase: [{}] },
+    { id: "2", discription: "array", tesctcase: [{}] },
+    { id: "3", discription: "Revers a sorted", tesctcase: [{}] }
+  ]);
+
+
+
+
 
   useEffect(() => {
     setCodeText(stubs[language]);
@@ -27,6 +38,7 @@ function CodeEditor() {
       language,
       codeText,
     };
+
 
     try {
       setOutputText("");
@@ -78,6 +90,18 @@ function CodeEditor() {
     }
   };
 
+  const handleNext = () => {
+    if (questionNo >= 0 && questionNo < qustionText.length - 1) {
+      setQustNo(questionNo + 1);
+    }
+  };
+  const handlePrvious = async () => {
+    if (questionNo > 0) {
+      setQustNo(questionNo - 1);
+    }
+
+  };
+
   const setDefaultLanguage = () => {
     localStorage.setItem("default-language", language);
   };
@@ -105,7 +129,7 @@ function CodeEditor() {
 
   return (
     <div className="App">
-      <h1>Online Code Compiler</h1>
+      <h1>Code Compiler</h1>
       <div>
         <label>Language:</label>
         <select
@@ -125,23 +149,53 @@ function CodeEditor() {
         </select>
       </div>
       <br />
-      <div>
+      {/* <div>
         <button onClick={setDefaultLanguage}>Set Default</button>
+      </div> */}
+      <br />
+      <div className="qustion-editor ">
+        <p className="qustion">{qustionText[questionNo].discription}</p>
+        <textarea
+          rows="10"
+          cols="80"
+          value={codeText}
+          onChange={(e) => setCodeText(e.target.value)}
+        ></textarea>
+
+
       </div>
-      <br />
-      <textarea
-        rows="20"
-        cols="75"
-        value={codeText}
-        onChange={(e) => setCodeText(e.target.value)}
-      ></textarea>
-      <br />
-      <button onClick={handleSubmit}>Submit</button>
+
+
+
+
+      <div className="button-container">
+
+        <div className="col-md-6">
+          <button onClick={handlePrvious} className="nav-btn">{"<<"}</button>
+          <button onClick={handleNext} className="nav-btn">{">>"}</button>
+        </div>
+        <div className="col-md-6">
+          <button onClick={handleSubmit} className="submit-btn">Submit</button>
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+
       <p>{jobStatus}</p>
       <p>{jobId ? `Job ID: ${jobId}` : ""}</p>
       <p>{renderTimeDetails()}</p>
       <p>{outputText}</p>
+
+
     </div>
+
+
   );
 }
 

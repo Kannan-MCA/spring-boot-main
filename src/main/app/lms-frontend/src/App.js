@@ -14,6 +14,7 @@ import StudentPage from './components/StudentDashboard/StudentPage';
 import LoginComponent from './components/LoginComponent';
 import Register from './components/RegisterComponent';
 import PrivateRoute from './PrivateRoute';
+import ProblemList from './components/problem/ProblemList';
 function App() {
   return (
     <BrowserRouter>
@@ -21,7 +22,7 @@ function App() {
         <HeaderComponent />
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route element={<StudentPage />} path="/home" exact />
+            <Route element={<ProblemList />} path="/home" exact />
             <Route element={<StudentPage />} path="/StudentPage" />
 
           </Route>

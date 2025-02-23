@@ -1,6 +1,73 @@
 #root {
-    margin: 0 auto; 
-    /*padding: 2rem; */
-    text-align: center;
-    width : 1000px;
-  }
+  margin: 0 auto;
+  /*padding: 2rem; */
+  text-align: center;
+  width: 1080px;
+  background-color: #E7E7E7;
+
+}
+
+.App {
+  margin-top: 50px;
+  background-color: #E7E7E7;
+
+}
+
+textarea {
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%;
+}
+
+.qustion {
+  width: 50%;
+  padding: 20px;
+  text-align: left;
+}
+
+
+.qustion-editor {
+  display: flex;
+  background-color: #E7E7E7;
+  width: 100%;
+  height: auto;
+}
+
+.button-container {
+  display: flex;
+  border-radius: 5px;
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: #E7E7E7;
+  padding: 20px;
+}
+
+.nav-btn {
+  background-color: #E7E7E7;
+  width: 25px;
+  border-radius: 70px;
+  border: 1px solid #FFFFFF;
+  margin: 2px;
+  color: #FFFFFF;
+}
+
+.nav-btn:hover {
+  border: 1px solid #0257b8;
+  font-weight: bold;
+  color: #0257b8;
+  padding: 5px;
+}
+
+.submit-btn {
+  background-color: #E7E7E7;
+  width: 80px;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.submit-btn:hover {
+  border: 1px solid #0257b8;
+  color: #0257b8;
+  font-weight: bold;
+
+}

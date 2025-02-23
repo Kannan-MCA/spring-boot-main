@@ -33,7 +33,6 @@ public class CodeExecutionServices {
     }
 
     private Judge0Response callJudge0Api(Judge0Request request) {
-        // Logic to call the Judge0 API using RestTemplate or WebClient
         String apiUrl = "https://api.judge0.com/submissions";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Judge0Response> responseEntity = restTemplate.postForEntity(apiUrl, request, Judge0Response.class);
