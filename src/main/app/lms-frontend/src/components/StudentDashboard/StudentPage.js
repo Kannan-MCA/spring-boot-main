@@ -116,15 +116,34 @@ const StudentPage = () => {
                 <div className="col-md-9 details-page">
                     <div className="col-md-6">
                         <div className='header-title'>
-                        Detail
+                            Detail
                         </div>
-                        
-                        
+
+                        <div className='detail-row'>
+                            <label className='label-1'>Detail</label>
+                            <label className='detail-label-1'>Detail</label>
                         </div>
-                    <div className="col-md-6"> 
-                    <div className='header-title'>
-                    Detail
+                        <div className='detail-row'>
+                            <label className='label-2'>Detail</label>
+                            <label className='detail-label-2'>Detail</label>
+                        </div>
+                        <div className='detail-row'>
+                            <label className='label-1'>Detail</label>
+                            <label className='detail-label-1'>Detail</label>
+                        </div>
+                        <div className='detail-row'>
+                            <label className='label-2'>Detail</label>
+                            <label className='detail-label-2'>Detail</label>
+                        </div>
+
+                        
+
+
                     </div>
+                    <div className="col-md-6">
+                        <div className='header-title'>
+                            Detail
+                        </div>
 
                     </div>
                 </div>
